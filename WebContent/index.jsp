@@ -23,37 +23,14 @@ String ctx = application.getContextPath();
 						<h4>현재 회원 수 : <mark>5078명</mark></h4>			
 						<br>
 					
-					<a href="<%=ctx%>/member.do?action=move&page=admin_login_form">관리자로그인</a>
-						<form action="<%=ctx%>/member.do">
-						<input type="hidden" name="action" value="move"/>
-						<input type="hidden" name="page" value="join_form"/>
-						<input type="submit" value ="사용자가입"/>
-						</form>
-						<form action="<%=ctx%>/member.do">
-						<input type="hidden" name="action" value="move" />
-						<input type="hidden" name="page" value="update_form"/>
-						<input type="submit" value ="비번바꾸기"/>
-						</form>
-						<form action="<%=ctx%>/member.do">
-						<input type="hidden" name="action" value="move" />
-						<input type="hidden" name="page" value="delete_form"/>
-						<input type="submit" value ="계정삭제"/>
-						</form>
-						<form action="<%=ctx%>/member.do">
-						<input type="hidden" name="action" value="move" />
-						<input type="hidden" name="page" value="member_list"/>
-						<input type="submit" value ="회원 목록"/>
-						</form>
-						<form action="<%=ctx%>/member.do">
-						<input type="hidden" name="action" value="move" />
-						<input type="hidden" name="page" value="search_team_form"/>
-						<input type="submit" value ="팀이름 검색"/>
-						</form>
-						<form action="<%=ctx%>/member.do">
-						<input type="hidden" name="action" value="move" />
-						<input type="hidden" name="page" value="search_id_form"/>
-						<input type="submit" value ="아이디 검색"/>
-						</form>
+					<a href="<%=ctx%>/member.do?action=move&page=admin_login_form">관리자로그인</a><br />
+						<a href="<%=ctx%>/member.do?action=move&page=join_form"> <button>회원가입</button> </a><br />
+						<a href="<%=ctx%>/member.do?action=move&page=update_form"> <button>비번바꾸기</button> </a><br />
+						<a href="<%=ctx%>/member.do?action=move&page=delete_form"> <button>계정삭제</button> </a><br />
+						<a href="<%=ctx%>/member.do?action=move&page=member_list"> <button>회원 목록</button> </a><br />
+						<a href="<%=ctx%>/member.do?action=move&page=search_team_form"> <button>팀이름 검색</button> </a><br />
+						<a href="<%=ctx%>/member.do?action=move&page=search_id_form"> <button>아이디 검색</button> </a><br />
+
 			</td>
 		</tr>
 		<tr class="height-140">

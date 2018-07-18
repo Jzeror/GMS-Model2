@@ -22,5 +22,5 @@ public interface MemberService {
 	
 	public MemberBean login(MemberBean member);
 	
-	public void createAge(MemberBean mm);
+/*	public String createAge(MemberBean mm);*/
 }

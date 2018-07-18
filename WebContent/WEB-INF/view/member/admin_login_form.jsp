@@ -30,7 +30,7 @@ String ctx = application.getContextPath();
 				admin-pass:<br>
 				<input type="password" name="adminpass"> 
 				<br><br>
-				<input type="hidden" name="action" value="move" />
+				<input type="hidden" name="action" value="login" />
 				<input type="hidden" name="page" value="admin_login_result"/>
 				<input type="submit" value="저언송" >
 			</form>

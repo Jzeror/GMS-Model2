@@ -11,7 +11,7 @@
 	<form action="<%=ctx %>/member.do">
 	<h2>팀 검색 </h2>
 	<input type="text" name="search"/>
-							<input type="hidden" name="action" value="move" />
+							<input type="hidden" name="action" value="searchMemberByTeam" />
 						<input type="hidden" name="page" value="search_team_result"/>
 	<input type="submit" name="검색"/>
 	</form>

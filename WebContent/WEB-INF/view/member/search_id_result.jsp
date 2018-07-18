@@ -22,7 +22,7 @@ String ctx = application.getContextPath();
 	</table>
 	<br /><br />
 	<form action="<%=ctx %>/member.do" align="Center">
-	<input type="hidden" name="action" value="move"/>
+	<input type="hidden" name="action" value="return"/>
 <input type="hidden" name="page" value="index"/>
 	<input type="submit" value="메인으로 가기"/>
 	</form>

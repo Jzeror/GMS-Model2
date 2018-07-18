@@ -31,6 +31,7 @@ public class MemberDAOImpl implements MemberDAO {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.UERNAME, DBConstant.PASSWORD).getConnection()
 					.createStatement().executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(), mm.getMemId(),
 							mm.getName(), mm.getPassword(), mm.getSsn(), mm.getAge()));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,11 +58,7 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (countAccount() == lst.size()) {
-			System.out.println("전체 리스트 인원 호출 성공\n");
-		} else {
-			System.out.println("전체 리스트 호출 실패");
-		}
+
 		return lst;
 	}
 
@@ -192,10 +189,10 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (flag == true) {
+/*		if (flag == true) {
 			MemberServiceImpl.getInstance().createAge(mm);
 
-		}
+		}*/
 		return flag;
 
 	}
