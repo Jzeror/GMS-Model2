@@ -31,4 +31,5 @@ public class LoginCommand extends Command{
 		default:
 			break;
 		}
+		super.execute();
 }}

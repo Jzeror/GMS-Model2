@@ -1,17 +1,12 @@
 package command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import domain.MemberBean;
-import enums.Domain;
-import service.MemberService;
 import service.MemberServiceImpl;
 
-public class ListCommand extends Command{
-	public ListCommand(HttpServletRequest request) {
+public class CountCommand extends Command {
+	public CountCommand(HttpServletRequest request, HttpServletResponse response) {
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
@@ -20,7 +15,9 @@ public class ListCommand extends Command{
 	}
 	@Override
 	public void execute() {
-			 request.setAttribute("list", MemberServiceImpl.getInstance().showAllList()); 
+		request.setAttribute("count",
+				MemberServiceImpl.getInstance().showCountList());
 		super.execute();
 	}
+	
 }

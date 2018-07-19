@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Carrier;
+import command.CountCommand;
+import command.ListCommand;
+import command.RetrieveCommand;
+import command.SearchCommand;
 import command.Sentry;
 import domain.MemberBean;
 import enums.Action;
@@ -23,28 +27,16 @@ public class MemberController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(request.getContextPath());
-		System.out.println(request.getServletPath());
-		System.out.println("MemberController ENTER!!");
 		Sentry.init(request);
 		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE:
-				Carrier.forward(request, response);	
+			Carrier.forward(request, response);
 			break;
 		case JOIN:
 			Carrier.redirect(request, response, "/member.do?action=move&page=admin_login_form");
 			break;
-		case LIST:
-			Carrier.redirect(request, response, "/member.do?action=move&page=search_team_result");
-			break;
-		case SEARCH:
-			Carrier.redirect(request, response, "/member.do?action=move&page=search_team_result");
-			break;
-		case RETRIEVE:
-			Carrier.redirect(request, response,  "/member.do?action=move&page=admin_login_form");
-			break;
-		case COUNT:
-			System.out.println(MemberServiceImpl.getInstance().showCountList());
+		case LIST: case SEARCH: case RETRIEVE: case COUNT:
+			Carrier.forward(request, response);
 			break;
 		case UPDATE:
 			Carrier.redirect(request, response, "");
@@ -53,6 +45,9 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response, "");
 			break;
 		case LOGIN:
+			Carrier.redirect(request, response, "");
+			break;
+		default:
 			Carrier.redirect(request, response, "");
 			break;
 		}

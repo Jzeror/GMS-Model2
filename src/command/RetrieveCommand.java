@@ -16,14 +16,8 @@ public class RetrieveCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
-		case MEMBER:
-			MemberBean mem = new MemberBean();
+		MemberBean mem = new MemberBean();
 			mem.setMemId(request.getParameter("idsearch"));
-			//mem = MemberServiceImpl.getInstance().showList(mem);
-			break;
-		default:
-			break;
-		}
-}
+		request.setAttribute("member", mem = MemberServiceImpl.getInstance().showList(mem));
+		super.execute();}
 }

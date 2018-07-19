@@ -1,6 +1,10 @@
 package command;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
+import domain.MemberBean;
 
 public class Command implements Order {
 	protected String action, domain, page, view;
