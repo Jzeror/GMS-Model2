@@ -14,7 +14,7 @@ String ctx = application.getContextPath();
 아이디 : <input type="text" name="id" /><br>
 비밀번호 : <input type="password" name="oldpass" /> <br />
 새 비밀번호 : <input type="password" name="newpass" /> <br />
-						<input type="hidden" name="action" value="memberUpdate" />
+						<input type="hidden" name="action" value="update" />
 						<input type="hidden" name="page" value="update_result"/>
 <input type="submit" name="즈언송"/>
 </form>

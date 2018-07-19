@@ -24,7 +24,7 @@ String ctx = application.getContextPath();
 
 </table>
 <form action="<%=ctx %>/member.do">
-<input type="hidden" name="action" value="memberlist"/>
+<input type="hidden" name="action" value="list"/>
 <input type="hidden" name="page" value="index"/>
 <input type="submit" value="홈으로 가기"/>
 </form>

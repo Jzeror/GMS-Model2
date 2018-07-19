@@ -21,16 +21,14 @@ String ctx = application.getContextPath();
 			<td align="center">
 						<br />
 						<h4>현재 회원 수 : <mark>5078명</mark></h4>			
-						<br>
-					
-					<a href="<%=ctx%>/member.do?action=move&page=admin_login_form">관리자로그인</a><br />
+						<br>	
+						<a href="<%=ctx%>/member.do?action=move&page=admin_login_form"><button>관리자로그인</button></a><br />
 						<a href="<%=ctx%>/member.do?action=move&page=join_form"> <button>회원가입</button> </a><br />
 						<a href="<%=ctx%>/member.do?action=move&page=update_form"> <button>비번바꾸기</button> </a><br />
 						<a href="<%=ctx%>/member.do?action=move&page=delete_form"> <button>계정삭제</button> </a><br />
 						<a href="<%=ctx%>/member.do?action=move&page=member_list"> <button>회원 목록</button> </a><br />
 						<a href="<%=ctx%>/member.do?action=move&page=search_team_form"> <button>팀이름 검색</button> </a><br />
 						<a href="<%=ctx%>/member.do?action=move&page=search_id_form"> <button>아이디 검색</button> </a><br />
-
 			</td>
 		</tr>
 		<tr class="height-140">

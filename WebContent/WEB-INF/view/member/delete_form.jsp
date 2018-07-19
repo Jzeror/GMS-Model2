@@ -11,7 +11,7 @@
 <form action="<%=ctx %>/member.do">
 아이디:<input type="text" name="id" /><br>
 비밀번호:<input type="password" name="pass" /><br />
-						<input type="hidden" name="action" value="memberDelete" />
+						<input type="hidden" name="action" value="delete" />
 						<input type="hidden" name="page" value="delete_result"/>
 <input type="submit" name="조오오온송" />
 </form>
