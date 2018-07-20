@@ -14,20 +14,15 @@ public class CreateCommand extends Command {
 		setPage(request.getParameter("page"));
 		execute();
 	}
+
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(domain.toUpperCase())) {
-		case MEMBER:
-			MemberBean mem = new MemberBean();
-			mem.setMemId(request.getParameter("memid"));
-			mem.setName(request.getParameter("name"));
-			mem.setPassword(request.getParameter("password"));
-			mem.setSsn(request.getParameter("ssn"));
-			MemberServiceImpl.getInstance().createMemId(mem);
-			break;
-		default:
-			break;
-		}
-super.execute();
+		super.execute();
+		MemberBean mem = new MemberBean();
+		mem.setMemId(request.getParameter("memid"));
+		mem.setName(request.getParameter("name"));
+		mem.setPassword(request.getParameter("password"));
+		mem.setSsn(request.getParameter("ssn"));
+		MemberServiceImpl.getInstance().createMemId(mem);
 	}
 }

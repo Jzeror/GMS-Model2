@@ -30,15 +30,16 @@ public class MemberController extends HttpServlet {
 		Sentry.init(request);
 		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE:
-			Carrier.forward(request, response);
+			if (request.getParameter("page").equals("index")) {
+				Carrier.redirect(request, response, "");
+			} else {
+				Carrier.forward(request, response);
+			}
 			break;
 		case JOIN:
 			Carrier.redirect(request, response, "/member.do?action=move&page=admin_login_form");
 			break;
-		case LIST:
-		case SEARCH:
-		case RETRIEVE:
-		case COUNT:
+		case LIST:case SEARCH:case RETRIEVE:case COUNT:
 			Carrier.forward(request, response);
 			break;
 		case UPDATE:

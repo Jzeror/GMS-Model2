@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Carrier {
-	/* public static Command cmd = new Command(); */
 	public static void forward(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.getRequestDispatcher(Sentry.cmd.getView()).forward(request, response);

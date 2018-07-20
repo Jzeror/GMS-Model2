@@ -7,20 +7,20 @@ String ctx = application.getContextPath();
 <head>
 <meta charset="UTF-8" />
 <title>main</title>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="resources/css/style.css" />
 </head>
 <body>
 	<table id="main-tab-layout" class="margin-auto">
 		<tr class="height-140">
-			<td colspan="2"><img src="img/home/head.png"
+			<td colspan="2"><img src="resources/img/home/head.png"
 				style="height: 135px; width: 100%" alt="" /></td>
 		</tr>
 		<tr id="main-tab-layout-tr">
 			<td id="main-tab-layout-td" align="center"><img
-				src="img/home/htm_20150216175457142.jpg" alt="" /></td>
+				src="resources/img/home/htm_20150216175457142.jpg" alt="" /></td>
 			<td align="center">
 						<br />
-						<h4>현재 회원 수 : <mark>5078명</mark></h4>			
+						<h4>현재 회원 수 : <mark>557078명</mark></h4>			
 						<br>	
 						<a href="<%=ctx%>/member.do?action=move&page=admin_login_form"><button>관리자로그인</button></a><br />
 						<a href="<%=ctx%>/member.do?action=move&page=join_form"> <button>회원가입</button> </a><br />

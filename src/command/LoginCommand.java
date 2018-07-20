@@ -20,7 +20,8 @@ public class LoginCommand extends Command {
 		MemberBean mem = new MemberBean();
 		mem.setMemId(request.getParameter("name"));
 		mem.setPassword(request.getParameter("pass"));
-		if (MemberServiceImpl.getInstance().showOneList(mem) == false) {
+		mem=MemberServiceImpl.getInstance().login(mem);
+		if (MemberServiceImpl.getInstance().showOneList(mem) == false && !mem.getAge().equals("999")) {
 			request.setAttribute("match", "TRUE");
 			request.setAttribute("user", MemberServiceImpl.getInstance().login(mem));
 		} else {

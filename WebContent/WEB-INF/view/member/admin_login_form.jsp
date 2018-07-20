@@ -7,18 +7,18 @@ String ctx = application.getContextPath();
 <head>
 <meta charset="UTF-8" />
 <title>admin_login</title>
-<link rel="stylesheet" href="../../css/style.css" />
+<link rel="stylesheet" href="resources/css/style.css" />
 </head>
 <body>
 	<table id="admin-tab-layout" class="margin-auto">
 		<tr class="height-140">
 			<td colspan="2">
-				<img src="../../img/home/head.png" style="height: 135px; width:100%" alt="" />
+				<img src="resources/img/home/head.png" style="height: 135px; width:100%" alt="" />
 			</td>
 		</tr>
 		<tr id="admin-tab-layout-tr">
 			<td id="admin-tab-layout-td" align="center">
-			<img src="../../img/home/mug_obj_201601311533061929.jpg"  alt="" />
+			<img src="resources/img/home/mug_obj_201601311533061929.jpg"  alt="" />
 			</td>
 			<td align="center">
 		<div id="admin-login-layout">
