@@ -9,11 +9,9 @@ public class Commander {
 		Command cmd = null;
 		switch (Action.valueOf(request.getParameter("action").toUpperCase())) {
 		case MOVE:
-			System.out.println("--무브진입--");
 			cmd = new MoveCommand(request);
 			break;
 		case JOIN:
-			System.out.println("--조인진입--");
 			cmd = new CreateCommand(request);
 			break;
 		case UPDATE:

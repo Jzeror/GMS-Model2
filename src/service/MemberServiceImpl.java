@@ -18,7 +18,6 @@ public class MemberServiceImpl implements MemberService{
 	private MemberServiceImpl() {}
 	@Override
 	public void createMemId(MemberBean mm) {
-		System.out.println(mm.getSsn());
 		mm.setAge(String.valueOf(119 - Integer.parseInt(mm.getSsn().substring(0,2))));
 		MemberDAOImpl.getInstance().insertMemId(mm);
 	}
@@ -53,8 +52,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public MemberBean login(MemberBean member) {
-	
-		
 		return MemberDAOImpl.getInstance().login(member);
 	}
 /*	@Override

@@ -25,13 +25,13 @@ String ctx = application.getContextPath();
 			<h1>로그인</h1>
 			<form id=" admin-login-form" action="<%=ctx%>/member.do">  
 				admin-id:<br>
-				<input type="text" name="adminid"/>
+				<input type="text" name="name">
 				<br>
 				admin-pass:<br>
-				<input type="password" name="adminpass"> 
+				<input type="password" name="pass"> 
 				<br><br>
 				<input type="hidden" name="action" value="login" />
-				<input type="hidden" name="page" value="admin_login_result"/>
+				<input type="hidden" name="page" value="mypage"/>
 				<input type="submit" value="저언송" >
 			</form>
 		</div>

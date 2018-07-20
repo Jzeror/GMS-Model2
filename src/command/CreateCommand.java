@@ -16,16 +16,14 @@ public class CreateCommand extends Command {
 	}
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
+		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
-			System.out.println("회원가입에 들어옴!!!");
 			MemberBean mem = new MemberBean();
 			mem.setMemId(request.getParameter("memid"));
 			mem.setName(request.getParameter("name"));
 			mem.setPassword(request.getParameter("password"));
 			mem.setSsn(request.getParameter("ssn"));
 			MemberServiceImpl.getInstance().createMemId(mem);
-			System.out.println("회원가입 성공!!");
 			break;
 		default:
 			break;

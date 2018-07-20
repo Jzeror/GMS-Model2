@@ -164,7 +164,13 @@ public class MemberDAOImpl implements MemberDAO {
 					.executeQuery(String.format(MemberQuery.LOGIN.toString(), bean.getMemId(), bean.getPassword()));
 			if (rs.next()) {
 				mem = new MemberBean();
+				mem.setMemId(rs.getString("ADMINID"));
 				mem.setAge(rs.getString("AGE"));
+				mem.setName(rs.getString("NAME"));
+				mem.setPassword(rs.getString("PASSWORD"));
+				mem.setRoll(rs.getString("ROLL"));
+				mem.setSsn(rs.getString("SSN"));
+				mem.setTeamId(rs.getString("TEAMID"));
 			} else {
 				mem = new MemberBean();
 				mem.setAge("999");
@@ -179,7 +185,6 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public boolean selectOneList(MemberBean mm) {
 		boolean flag = true;
-
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
 					.getConnection().createStatement()
@@ -192,7 +197,6 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 /*		if (flag == true) {
 			MemberServiceImpl.getInstance().createAge(mm);
-
 		}*/
 		return flag;
 

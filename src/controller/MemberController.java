@@ -35,7 +35,10 @@ public class MemberController extends HttpServlet {
 		case JOIN:
 			Carrier.redirect(request, response, "/member.do?action=move&page=admin_login_form");
 			break;
-		case LIST: case SEARCH: case RETRIEVE: case COUNT:
+		case LIST:
+		case SEARCH:
+		case RETRIEVE:
+		case COUNT:
 			Carrier.forward(request, response);
 			break;
 		case UPDATE:
@@ -45,7 +48,11 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response, "");
 			break;
 		case LOGIN:
-			Carrier.redirect(request, response, "");
+			if (request.getAttribute("match").equals("TRUE")) {
+				Carrier.forward(request, response);
+			} else {
+				Carrier.redirect(request, response, "/member.do?action=move&page=admin_login_form");
+			}
 			break;
 		default:
 			Carrier.redirect(request, response, "");

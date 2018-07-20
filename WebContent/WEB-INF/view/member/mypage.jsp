@@ -1,4 +1,9 @@
+<%@page import="domain.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	
+	<% 
+	MemberBean user = (MemberBean)request.getAttribute("user");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +25,7 @@ table, tr, th, td {
 </style>
 </head>
 <body>
-	<table id="main-tab-layout" class="margin-auto">
+<!-- 	<table id="main-tab-layout" class="margin-auto">
 		<tr class="height-140">
 			<td colspan="2">
 				<img src="../../img/home/head.png" style="height: 135px; width:100%" alt="" />
@@ -28,12 +33,12 @@ table, tr, th, td {
 		</tr>
 		<tr id="main-tab-layout-tr">
 			<td style="width: 80%"><p style="font-size:900% " align="center">MyPage</p></td>
-			<td><a href="../home/main.html"><p align="center">로그아웃</p></a>
 		</tr>
 		<tr class="height-140">
 			<td class="width-80pt" colspan="2"></td>
 		</tr>
-	</table>
+	</table> -->
+<%=user %>
 </body>
 </html>
 

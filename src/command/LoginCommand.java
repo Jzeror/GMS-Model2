@@ -6,7 +6,7 @@ import domain.MemberBean;
 import enums.Domain;
 import service.MemberServiceImpl;
 
-public class LoginCommand extends Command{
+public class LoginCommand extends Command {
 	public LoginCommand(HttpServletRequest request) {
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
@@ -16,20 +16,15 @@ public class LoginCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
-		case MEMBER:
-			MemberBean mem = new MemberBean();
-			mem.setMemId(request.getParameter("id"));
-			mem.setPassword(request.getParameter("pass"));
-			mem = MemberServiceImpl.getInstance().login(mem);
-/*			if (mem.getAge().equals("999")) {
-				System.out.println("로그인실패");
-			} else {
-				System.out.println("로그인성공");
-			}*/
-			break;
-		default:
-			break;
-		}
 		super.execute();
-}}
+		MemberBean mem = new MemberBean();
+		mem.setMemId(request.getParameter("name"));
+		mem.setPassword(request.getParameter("pass"));
+		if (MemberServiceImpl.getInstance().showOneList(mem) == false) {
+			request.setAttribute("match", "TRUE");
+			request.setAttribute("user", MemberServiceImpl.getInstance().login(mem));
+		} else {
+			request.setAttribute("match", "FALSE");
+		}
+	}
+}
