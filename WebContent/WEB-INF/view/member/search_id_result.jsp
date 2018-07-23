@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="domain.MemberBean"%>
 <%
 String ctx = application.getContextPath();
+%>
+<% 
+MemberBean user = (MemberBean)request.getAttribute("member");
 %>
 <!doctype html>
 <html lang="en">
@@ -18,6 +22,15 @@ String ctx = application.getContextPath();
 			<td>ROLL</td>
 			<td>SSN</td>
 			<td>PASSWORD</td>
+		</tr>
+		<tr>
+			<td><%=user.getMemId() %></td>
+			<td><%=user.getTeamId() %></td>
+			<td><%=user.getName() %></td>
+			<td><%=user.getAge() %></td>
+			<td><%=user.getRoll() %></td>
+			<td><%=user.getSsn() %></td>
+			<td><%=user.getPassword() %></td>
 		</tr>
 	</table>
 	<br /><br />

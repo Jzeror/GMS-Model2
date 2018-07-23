@@ -4,7 +4,11 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.jar"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Tomcat v8.0">
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/JeeWorkspace/lombok.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/cos.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/jstl.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1027/eclipse/jee-oxygen/eclipse/standard.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>

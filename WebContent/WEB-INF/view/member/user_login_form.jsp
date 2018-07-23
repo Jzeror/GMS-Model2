@@ -21,20 +21,20 @@ String ctx = application.getContextPath();
 			<img src="resources/img/home/mug_obj_201601311533061929.jpg"  alt="" />
 			</td>
 			<td align="center">
-		<div id="admin-login-layout">
-			<h1>로그인</h1>
-			<form id=" admin-login-form" action="<%=ctx%>/member.do">  
-				admin-id:<br>
-				<input type="text" name="name">
-				<br>
-				admin-pass:<br>
-				<input type="password" name="pass"> 
-				<br><br>
-				<input type="hidden" name="action" value="login" />
-				<input type="hidden" name="page" value="mypage"/>
-				<input type="submit" value="저언송" >
-			</form>
-		</div>
+				<div id="admin-login-layout">
+					<h1>로그인</h1>
+					<form id=" admin-login-form" action="<%=ctx%>/member.do">  
+						id:<br>
+						<input type="text" name="name">
+						<br>
+						pass:<br>
+						<input type="password" name="pass"> 
+						<br><br>
+						<input type="hidden" name="action" value="login" />
+						<input type="hidden" name="page" value="index"/>
+						<input type="submit" value="저언송" >
+					</form>
+				</div>
 			</td>
 		</tr>
 		<tr class="height-140">

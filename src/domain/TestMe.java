@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.TestDAOMe;
-import sun.applet.Main;
 
 public class TestMe {
 	public static void main(String[] args) {

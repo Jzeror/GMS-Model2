@@ -23,12 +23,8 @@ public class SearchCommand extends Command {
 		}
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
-		case MEMBER:
-			this.lst = MemberServiceImpl.getInstance().showSomeList(request.getParameter("search"));
-			break;
-		default:
-			break;
-		}
+
+
+	request.setAttribute("memlist", MemberServiceImpl.getInstance().showSomeList(request.getParameter("search"))); 
 		super.execute();}
 }

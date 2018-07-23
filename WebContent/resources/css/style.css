@@ -1,35 +1,210 @@
 table, tr, th, td {
 	border: 1px solid black;
-	border-collapse: collapse;}
+	border-collapse: collapse;
+}
+
+body {
+	font-family: 'Malgun Gothic', 'Verdana';
+	background-color: #008000;
+	color: #400040;
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: 1.5em;
+}
+
+h1 {
+	font-size: 2em;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+div#wrapper{
+	width: 90%;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+div#header{
+	position: relative;
+	margin-bottom: 0;
+	padding: 0;
+	color: #000;
+} /* 헤더가 relative니까 wrapper 기준으로 잡음 */
+div#title{
+	float: left; /* 붕 띄운다음에 왼쪽으로 붙여버림. */
+					/* 부모한테 포지션을 주면 자식들은 그대로 받음 */
+	text-align: left;
+	display: block; 
+}
+div#login_box{
+	float: right;
+	margin: 10px;
+	font-size: 1.1em;
+	display: block;
+	color: #fff;
+}
+div#login_box a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+div#login_box a:active{
+	color: #ff0000;
+	text-decoration: none;	
+}
+div#header h1{
+	color: #fff;
+	padding: 5px 0;
+	margin: 0;
+	border: none;
+	line-height: 2em;
+	font-weight:bold;
+	font-size: 32px;
+}
+div#content{
+	padding: 15px 30px 15px 30px;
+	background-color: #fff;
+	margin-bottom: 30px;
+	min-height: 400px;
+}
+div#content_box{
+	clear:both;
+	margin-top: 40px;
+}
+div#menu_box{
+	clear:both;
+	margin-top: 40px;
+}
+ul#menu{
+	text-align: right;
+	margin: 0;
+	border-bottom: 1px #8000ff;
+	position: relative; /*  부모인 메뉴박스 기준 */
+}
+ul#menu li{
+	display: inline;
+	list-style: none;
+	background-color: #ff7000;
+}
+
+ul#menu li a{
+	padding: 10px 20px;
+	background-color: #ffff00;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color : black;
+}
+ul#menu li a:hover{
+	background-color: #00ffff;
+	text-decoration: none;
+}
+
+ul#menu li a:active{
+	background-color: 00ff00;
+	text-decoration: none;
+}
+
+div#footer{
+	clear: both;
+	color: #fff;
+	text-align: center;
+	margin: 0;
+	padding: 10px 0;
+	line-height: normal;
+	font-size: 1.5em;
+}
 
 
-.width-full{width: 100%}
-.width-80pt{width: 80%}
-.height-full{height: 100% }
-.margin-auto{margine : 0 auto}
-.height-140{height:140px}
 
 
-#main-tab-layout-td{width:80%;}
-#main-tab-layout-tr{height:480px; width:80%;}
-#main-tab-layout{heigth:760px; width:100%}
-/*main*/
 
 
-#admin-tab-layout-td{width:80%;}
-#admin-tab-layout-tr{height:480px; width:80%;}
-#admin-tab-layout{heigth:760px; width:100%}
-#admin-login-layout{margin: 100px auto; width:200px}
-#admin-login-form{border: 1px solid black;}
-/*admin-login*/
+/* 
 
+.width-full {
+	width: 100%
+}
 
-#user-tab-layout-td{width:80%;}
-#user-tab-layout-tr{height:480px; width:80%;}
-#user-tab-layout{heigth:760px; width:100%}
-#user-login-layout{margin: 100px auto; width:200px}
-#user-login-form{border: 1px solid black}
-/*user-login*/
+.width-80pt {
+	width: 80%
+}
 
-#member-list{border: 1px solid black}
-/*member_list*/
+.height-full {
+	height: 100%
+}
+
+.margin-auto {
+	margine: 0 auto
+}
+
+.height-140 {
+	height: 140px
+}
+
+#main-tab-layout-td {
+	width: 80%;
+}
+
+#main-tab-layout-tr {
+	height: 480px;
+	width: 80%;
+}
+
+#main-tab-layout {
+	heigth: 760px;
+	width: 100%
+}
+main
+#admin-tab-layout-td {
+	width: 80%;
+}
+
+#admin-tab-layout-tr {
+	height: 480px;
+	width: 80%;
+}
+
+#admin-tab-layout {
+	heigth: 760px;
+	width: 100%
+}
+
+#admin-login-layout {
+	margin: 100px auto;
+	width: 200px
+}
+
+#admin-login-form {
+	border: 1px solid black;
+}
+admin-login
+#user-tab-layout-td {
+	width: 80%;
+}
+
+#user-tab-layout-tr {
+	height: 480px;
+	width: 80%;
+}
+
+#user-tab-layout {
+	heigth: 760px;
+	width: 100%
+}
+
+#user-login-layout {
+	margin: 100px auto;
+	width: 200px
+}
+
+#user-login-form {
+	border: 1px solid black
+}
+user-login
+#member-list {
+	border: 1px solid black
+}
+member_list */

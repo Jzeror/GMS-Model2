@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="domain.MemberBean" %>
 <%
 String ctx = application.getContextPath();
+List<MemberBean> lst= (ArrayList)request.getAttribute("list");
 %>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,6 +28,18 @@ String ctx = application.getContextPath();
 	<td>주민등록</td>
 </tr>
 
+<%for(MemberBean m: lst){%>
+	<tr>
+	
+			<td><%=m.getMemId() %></td>
+			<td><%=m.getTeamId()%></td>
+			<td><%=m.getName()%></td>
+			<td><%=m.getPassword()%></td>
+			<td><%=m.getRoll()%></td>
+			<td><%=m.getAge()%></td>
+			<td><%=m.getSsn()%></td>
+	</tr>
+	<%}%>
 </table>
 <form action="<%=ctx %>/member.do">
 <input type="hidden" name="action" value="list"/>

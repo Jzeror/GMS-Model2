@@ -25,7 +25,7 @@ import service.MemberServiceImpl;
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Sentry.init(request);
 		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
@@ -37,9 +37,10 @@ public class MemberController extends HttpServlet {
 			}
 			break;
 		case JOIN:
-			Carrier.redirect(request, response, "/member.do?action=move&page=admin_login_form");
+			Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");
 			break;
 		case LIST:case SEARCH:case RETRIEVE:case COUNT:
+			
 			Carrier.forward(request, response);
 			break;
 		case UPDATE:
@@ -50,18 +51,14 @@ public class MemberController extends HttpServlet {
 			break;
 		case LOGIN:
 			if (request.getAttribute("match").equals("TRUE")) {
-				Carrier.forward(request, response);
+				Carrier.redirect(request, response, "");
 			} else {
-				Carrier.redirect(request, response, "/member.do?action=move&page=admin_login_form");
+				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");
 			}
 			break;
 		default:
 			Carrier.redirect(request, response, "");
 			break;
 		}
-	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 }
