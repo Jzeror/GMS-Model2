@@ -23,7 +23,8 @@ String ctx = application.getContextPath();
 			<td align="center">
 				<div id="admin-login-layout">
 					<h1>로그인</h1>
-					<form id=" admin-login-form" action="<%=ctx%>/member.do">  
+					<form id=" admin-login-form" name="user_login_form" action="${context}/member.do"
+					onsubmit="return moveForm()" method="get">  
 						id:<br>
 						<input type="text" name="name">
 						<br>

@@ -10,7 +10,7 @@
 <title>Document</title>
 </head>
 <body>
-	<form action="<%=ctx%>/member.do">
+	<form name="search_id_form" action="${context}/member.do" onsubmit="return moveForm()" method="get">
 		<input type="text" name="idsearch" />
 		 <input type="hidden" name="action" value="retrieve" />
 		<input type="hidden" name="page" value="search_id_result" /> 

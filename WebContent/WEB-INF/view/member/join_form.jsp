@@ -12,7 +12,7 @@ String ctx = application.getContextPath();
  	<title>회원가입화면</title>
  </head>
  <body>
- 	<form action="<%=ctx%>/member.do">
+ 	<form name="join_form" action="${context}/member.do" onsubmit="return moveForm()" method="get" >
  		아이디 : <input type="text" name="memid"/><br>
  		이름 : <input type="text" name="name" /><br>
  		비밀번호 : <input type="password" name="password" /><br>

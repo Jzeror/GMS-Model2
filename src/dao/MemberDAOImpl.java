@@ -59,7 +59,6 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return lst;
 	}
 

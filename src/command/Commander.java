@@ -24,7 +24,6 @@ public class Commander {
 			cmd = new RetrieveCommand(request);
 			break;
 		case LOGIN:
-			System.out.println("준 이자식 커맨더 : "+Sentry.cmd.getAction());
 			cmd = new LoginCommand(request);
 			break;
 		case SEARCH:

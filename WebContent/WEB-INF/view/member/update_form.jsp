@@ -10,7 +10,7 @@ String ctx = application.getContextPath();
 </head>
 <body>
 	<h3>비밀번호 변경</h3>
-<form action="<%=ctx %>/member.do">
+<form name="update_form" action="${context}/member.do" onsubmit="return moveForm()" method="get" >
 아이디 : <input type="text" name="id" /><br>
 비밀번호 : <input type="password" name="oldpass" /> <br />
 새 비밀번호 : <input type="password" name="newpass" /> <br />

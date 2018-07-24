@@ -4,7 +4,7 @@
 <%@page import="domain.MemberBean" %>
 <%
 String ctx = application.getContextPath();
-List<MemberBean> lst= (ArrayList)request.getAttribute("list");
+List<MemberBean> lst= (List)request.getAttribute("list");
 %>
 
 
@@ -28,7 +28,7 @@ List<MemberBean> lst= (ArrayList)request.getAttribute("list");
 	<td>주민등록</td>
 </tr>
 
-<%for(MemberBean m: lst){%>
+<% for(MemberBean m: lst){ %>
 	<tr>
 	
 			<td><%=m.getMemId() %></td>
@@ -39,7 +39,7 @@ List<MemberBean> lst= (ArrayList)request.getAttribute("list");
 			<td><%=m.getAge()%></td>
 			<td><%=m.getSsn()%></td>
 	</tr>
-	<%}%>
+	<% } %>
 </table>
 <form action="<%=ctx %>/member.do">
 <input type="hidden" name="action" value="list"/>
