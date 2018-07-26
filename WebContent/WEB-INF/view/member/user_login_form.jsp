@@ -4,11 +4,9 @@ String ctx = application.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8" />
-<title>admin_login</title>
-<link rel="stylesheet" href="resources/css/style.css" />
-</head>
+
+<jsp:include page="../common/header.jsp" />
+
 <body>
 	<table id="admin-tab-layout" class="margin-auto">
 		<tr class="height-140">
@@ -18,13 +16,12 @@ String ctx = application.getContextPath();
 		</tr>
 		<tr id="admin-tab-layout-tr">
 			<td id="admin-tab-layout-td" align="center">
-			<img src="resources/img/home/mug_obj_201601311533061929.jpg"  alt="" />
+			<img src="${img}/home/mug_obj_201601311533061929.jpg"  alt="" />
 			</td>
 			<td align="center">
 				<div id="admin-login-layout">
 					<h1>로그인</h1>
-					<form id=" admin-login-form" name="user_login_form" action="${context}/member.do"
-					onsubmit="return moveForm()" method="get">  
+					<form id="user-login-form" > 
 						id:<br>
 						<input type="text" name="name">
 						<br>
@@ -33,9 +30,25 @@ String ctx = application.getContextPath();
 						<br><br>
 						<input type="hidden" name="action" value="login" />
 						<input type="hidden" name="page" value="index"/>
-						<input type="submit" value="저언송" >
+						<input id="loginFormBtn" type="submit"  value="저언송" >
 					</form>
 				</div>
+			<script>
+/* 			mem.setMemId('홍이야');
+			alert('유효성 체크값: '+mem.loginValidation()); */
+			document.getElementById('loginFormBtn')
+			.addEventListener('click', function(){
+				var mem= new Mem();
+				var form = document.getElementById("user-login-form");
+				form.action = "${context}/member.do";
+				form.method = "post";
+				mem.setMemId(form.name.value);
+				mem.setPassword(form.pass.value);
+			if(mem.loginValidation()){form.submit();}
+				
+			});
+			
+			</script>
 			</td>
 		</tr>
 		<tr class="height-140">

@@ -16,11 +16,6 @@
 		<!-- content end -->
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
-	<script>
-		function move(domain, action, page) {
-			location.href = "${context}/" + domain + ".do?action=" + action
-					+ "&page=" + page;
-		}
-	</script>
+
 </body>
 </html>

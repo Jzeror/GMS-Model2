@@ -16,14 +16,10 @@ public class DeleteCommand extends Command{
 	}
 @Override
 	public void execute() {
-		switch (Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
-		case MEMBER:
 			MemberBean mem = new MemberBean();
 			mem.setMemId(request.getParameter("id"));
 			mem.setPassword(request.getParameter("pass"));
 			MemberServiceImpl.getInstance().removeMember(mem);
-		 break;
-		}
 		super.execute();	}
 	
 }

@@ -37,7 +37,7 @@ public class MemberController extends HttpServlet {
 			}
 			break;
 		case JOIN:
-			Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");
+			Carrier.forward(request, response);
 			break;
 		case LIST:case SEARCH:case RETRIEVE:case COUNT:
 			

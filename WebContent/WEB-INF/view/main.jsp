@@ -15,16 +15,6 @@
 		</div>		<!-- content end -->
 		<jsp:include page="common/footer.jsp" />
 	</div>
-<script>
-function move(domain, action, page){
-	console.log('클릭 테스트 콘솔 성공!! ${context}');
-	alert('클릭 테스트 성공!! ${context}');
-	location.href = "${context}/"+domain+".do?action="+action+"&page="+page;
-}
-function moveForm() {
-        return false;
-}
-</script>
 </body>
 </html>
 

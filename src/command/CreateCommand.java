@@ -24,6 +24,13 @@ public class CreateCommand extends Command {
 		mem.setName(request.getParameter("name"));
 		mem.setPassword(request.getParameter("password"));
 		mem.setSsn(request.getParameter("ssn"));
-		MemberServiceImpl.getInstance().createMemId(mem);
+		if(MemberServiceImpl.getInstance().showOneList(mem)==true) {
+			MemberServiceImpl.getInstance().createMemId(mem);
+			request.setAttribute("createResult", "회원가입");
+		}else {
+			request.setAttribute("createResult", "아이디중복");
+		}
+		
+	
 	}
 }

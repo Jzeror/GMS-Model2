@@ -14,7 +14,20 @@
 		<input type="text" name="idsearch" />
 		 <input type="hidden" name="action" value="retrieve" />
 		<input type="hidden" name="page" value="search_id_result" /> 
-		<input type="submit" name="아이디 검색" />
+		<input type="submit" id="search_id_form_btn" name="아이디 검색" />
 	</form>
+	<script>
+	document.getElementById("search_id_form_btn").addEventListener('click',function(){
+	var form = document.getElementById("search_id_form");
+	form.action="${context}/member.do";
+	form.method="get";
+	var id= form.idsearch.value;
+	if(id==""){
+		alert( "Please provide searchId!" );
+		document.form.idsearch.focus() ;
+		return false;
+	}
+	});
+	</script>
 </body>
 </html>
