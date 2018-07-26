@@ -9,10 +9,11 @@
 
 document.getElementById('goUserLoginForm')
  .addEventListener('click', function(){ // 콜백함수
-	 new Common().move('${context}','member','move','user_login_form');
+/* 	 var x = ['${context}','member','move','user_login_form']; */
+	 router.move(['${context}','member','move','user_login_form']);
 });
 document.getElementById('goJoinForm')
 .addEventListener('click', function(){ 
-	new Common().move('${context}','member','move','join_form');
+	router.move(['${context}','member','move','join_form']);
 });
 </script>

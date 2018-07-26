@@ -25,7 +25,8 @@ String ctx = application.getContextPath();
 		form.action="${context}/member.do";
 		form.method="post";
 		mem.setMemId(form.memid.value);
-		if(mem.joinValidation()){
+		mem.setPassword(form.password.value);
+		if(service.joinValidation(mem)){
 		form.submit();
 		}
 	});

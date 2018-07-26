@@ -2,11 +2,28 @@
 	pageEncoding="UTF-8"%>
 <div id="menu_box">
 	<ul id="menu">
-		<li><a onclick="common.move('member','move','index')">HOME</a></li>
+		<li><a id="goHome" >HOME</a></li>
 		<li><a href="">ABOUT</a></li>
-		<li><a onclick="common.move('admin','move','main')">ADMIN</a></li>
-		<li><a onclick="common.move('member','move','search_id_form')">아이디찾기</a></li>
-		<li><a onclick="common.move('member','list','member_list')">회원목록</a></li>
-		<li><a onclick="common.move('member','move','delete_form')">삭제</a></li>
+		<li><a id="goAdmin">ADMIN</a></li>
+		<li><a id="goSearchId" >아이디찾기</a></li>
+		<li><a id="goList" >회원목록</a></li>
+		<li><a id="goDelete">삭제</a></li>
 	</ul>
 </div>
+<script>
+document.getElementById('goHome').addEventListener('click',function(){
+	router.move(["${context}","member","move","index"]);
+});
+document.getElementById('goAdmin').addEventListener('click',function(){
+	router.move(["${context}","admin","move","main"]);
+});
+document.getElementById('goSearchId').addEventListener('click',function(){
+	router.move(["${context}","member","move","search_id_form"]);
+});
+document.getElementById('goList').addEventListener('click',function(){
+	router.move(["${context}","member","list","member_list"]);
+});
+document.getElementById('goDelete').addEventListener('click',function(){
+	router.move(["${context}","member","move","delete_form"]);
+});
+</script>

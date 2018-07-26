@@ -9,10 +9,10 @@
 <script>
 document.getElementById('goHome')
 .addEventListener('click', function(){ // 콜백함수
-	 new Common().move('${context}','member','move','index');
+	router.move(['${context}','member','move','index']);
 });
 document.getElementById('goAdmin')
 .addEventListener('click', function(){ 
-	new Common().move('${context}','admin','move','main');
+	router.move(['${context}','admin','move','main']);
 });
 </script>

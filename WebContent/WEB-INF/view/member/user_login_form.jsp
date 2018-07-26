@@ -38,14 +38,14 @@ String ctx = application.getContextPath();
 			alert('유효성 체크값: '+mem.loginValidation()); */
 			document.getElementById('loginFormBtn')
 			.addEventListener('click', function(){
-				var mem= new Mem();
+				
 				var form = document.getElementById("user-login-form");
 				form.action = "${context}/member.do";
 				form.method = "post";
-				mem.setMemId(form.name.value);
-				mem.setPassword(form.pass.value);
-			if(mem.loginValidation()){form.submit();}
 				
+			if(service.loginValidation([form.name.value,form.pass.value])){
+				form.submit();
+				}
 			});
 			
 			</script>
