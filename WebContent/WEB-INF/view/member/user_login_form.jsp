@@ -21,7 +21,7 @@ String ctx = application.getContextPath();
 			<td align="center">
 				<div id="admin-login-layout">
 					<h1>로그인</h1>
-					<form id="user-login-form" > 
+					<form id="user-login-form-id" name="user_login_form_name"> 
 						id:<br>
 						<input type="text" name="name">
 						<br>
@@ -30,24 +30,23 @@ String ctx = application.getContextPath();
 						<br><br>
 						<input type="hidden" name="action" value="login" />
 						<input type="hidden" name="page" value="index"/>
-						<input id="loginFormBtn" type="submit"  value="저언송" >
+						<input id="loginFormBtn" type="button"  value="저언송" >
 					</form>
 				</div>
 			<script>
-/* 			mem.setMemId('홍이야');
-			alert('유효성 체크값: '+mem.loginValidation()); */
 			document.getElementById('loginFormBtn')
 			.addEventListener('click', function(){
-				
-				var form = document.getElementById("user-login-form");
+			var x = service.nullChecker([document.user_login_form_name.name.value, document.user_login_form_name.pass.value]);
+			if(x.checker){
+				var form = document.getElementById("user-login-form-id");
 				form.action = "${context}/member.do";
 				form.method = "post";
-				
-			if(service.loginValidation([form.name.value,form.pass.value])){
 				form.submit();
+				}else{
+					alert(x.text);
+					
 				}
 			});
-			
 			</script>
 			</td>
 		</tr>

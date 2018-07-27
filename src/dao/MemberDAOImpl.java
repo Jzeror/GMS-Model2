@@ -30,8 +30,8 @@ public class MemberDAOImpl implements MemberDAO {
 	public void insertMemId(MemberBean mm) {
 		try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString().toString(), DBConstant.PASSWORD).getConnection()
-					.createStatement().executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(), mm.getMemId(),
-							mm.getName(), mm.getPassword(), mm.getSsn(), mm.getAge()));
+					.createStatement().executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(),
+							mm.getMemId(),	mm.getName(), mm.getPassword(), mm.getSsn(), mm.getAge(), mm.getGender(), mm.getRoll(), mm.getTeamId()));
 
 		} catch (Exception e) {
 			e.printStackTrace();
