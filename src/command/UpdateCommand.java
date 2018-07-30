@@ -16,14 +16,14 @@ public class UpdateCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(Sentry.cmd.domain.toUpperCase())) {
-		case MEMBER:
+		
 			MemberBean mem = new MemberBean();
-			mem.setMemId(request.getParameter("id"));
-			mem.setPassword(request.getParameter("oldpass") + "/" + request.getParameter("newpass"));
+			mem.setMemId(request.getParameter("memId"));
+			mem.setPassword(request.getParameter("pass"));
+			mem.setRoll(request.getParameter("roll"));
+			mem.setTeamId(request.getParameter("team"));
 			MemberServiceImpl.getInstance().modifyMember(mem);
-			break;
-		default:
-			break;
-		}super.execute();}
+			setPage("mypage");
+			super.execute();
+		}
 }

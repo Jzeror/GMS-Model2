@@ -1,10 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- 
-memId, ssn, name, roll, teamId, password;
- -->
- <% 
-String ctx = application.getContextPath();
-%>
  <!doctype html>
  <html lang="en">
 <jsp:include page="../common/header.jsp"/>
@@ -51,6 +45,7 @@ String ctx = application.getContextPath();
  				<input type="checkbox" name="subject" value="html" /> HTML
  				<input type="checkbox" name="subject" value="spring" /> Spring
  				<br/><br />
+ 				
  				<input id="join_form_btn" type="button" value="밸류"/>
  	</form>
  	<script>

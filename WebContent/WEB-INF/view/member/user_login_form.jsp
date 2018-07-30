@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-String ctx = application.getContextPath();
-%>
 <!DOCTYPE html>
 <html>
 
@@ -29,7 +26,7 @@ String ctx = application.getContextPath();
 						<input type="password" name="pass"> 
 						<br><br>
 						<input type="hidden" name="action" value="login" />
-						<input type="hidden" name="page" value="index"/>
+			<!--이제 페이지를 자바에서 결정하자<input type="hidden" name="page" value="mypage"/> -->
 						<input id="loginFormBtn" type="button"  value="저언송" >
 					</form>
 				</div>

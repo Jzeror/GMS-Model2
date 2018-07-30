@@ -44,10 +44,10 @@ div#login_box{
 	margin: 10px;
 	font-size: 1.1em;
 	display: block;
-	color: #fff;
+	color: #000000;
 }
 div#login_box a:hover{
-	color: #fff;
+	color: #000000;
 	text-decoration: none;
 }
 div#login_box a:active{
@@ -55,7 +55,7 @@ div#login_box a:active{
 	text-decoration: none;	
 }
 div#header h1{
-	color: #fff;
+	color: #000000;
 	padding: 5px 0;
 	margin: 0;
 	border: none;
@@ -65,7 +65,7 @@ div#header h1{
 }
 div#content{
 	padding: 15px 30px 15px 30px;
-	background-color: #fff;
+	background-color: #c0c0c0;
 	margin-bottom: 30px;
 	min-height: 400px;
 }
@@ -118,7 +118,9 @@ div#footer{
 }
 
 
-
+div#update_div{
+	center;
+}
 
 
 

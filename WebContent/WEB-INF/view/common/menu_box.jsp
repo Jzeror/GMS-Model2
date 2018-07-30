@@ -9,10 +9,17 @@
 <script>
 document.getElementById('goHome')
 .addEventListener('click', function(){ // 콜백함수
-	router.move(['${context}','member','move','index']);
+	router.move({ context : '${context}',
+		domain : 'member',
+		action : 'move',
+		page : 'index'});
 });
 document.getElementById('goAdmin')
 .addEventListener('click', function(){ 
-	router.move(['${context}','admin','move','main']);
+	router.move({
+		context : '${context}',
+		domain : 'admin',
+		action : 'move',
+		page : 'main'});
 });
 </script>

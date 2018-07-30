@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import command.Carrier;
 import command.CountCommand;
@@ -44,14 +45,21 @@ public class MemberController extends HttpServlet {
 			Carrier.forward(request, response);
 			break;
 		case UPDATE:
-			Carrier.redirect(request, response, "");
+			Sentry.cmd.setPage("mypage");
+			Sentry.cmd.execute();
+			Carrier.forward(request, response);
 			break;
 		case DELETE:
 			Carrier.redirect(request, response, "");
 			break;
 		case LOGIN:
 			if (request.getAttribute("match").equals("TRUE")) {
-				Carrier.redirect(request, response, "");
+				request.getSession()
+				.setAttribute("user", 
+						request.getAttribute("user"));
+			/*	Sentry.cmd.setPage("mypage");
+				Sentry.cmd.execute();*/
+				Carrier.forward(request, response);
 			} else {
 				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");
 			}

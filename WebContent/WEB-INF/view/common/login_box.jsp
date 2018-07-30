@@ -8,12 +8,21 @@
 /* var goUserLoginForm = document.getElementById('goUserLoginForm'); */
 
 document.getElementById('goUserLoginForm')
- .addEventListener('click', function(){ // 콜백함수
-/* 	 var x = ['${context}','member','move','user_login_form']; */
-	 router.move(['${context}','member','move','user_login_form']);
+ .addEventListener('click', function(){
+	 router.move({
+		 context :'${context}',
+		 domain : 'member',
+		 action : 'move',
+		 page : 'user_login_form'});
 });
+
 document.getElementById('goJoinForm')
 .addEventListener('click', function(){ 
-	router.move(['${context}','member','move','join_form']);
+	var x = {context :'${context}', 
+			domain: 'member',
+			action: 'move',
+			page: 'join_form'};
+	alert(x.context);
+	router.move(x);
 });
 </script>

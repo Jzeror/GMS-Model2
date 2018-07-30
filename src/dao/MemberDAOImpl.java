@@ -100,11 +100,11 @@ public class MemberDAOImpl implements MemberDAO {
 			mem.setRoll(rs.getString("ROLL"));
 			mem.setSsn(rs.getString("SSN"));
 			mem.setTeamId(rs.getString("TEAM_ID"));
+			mem.setGender(rs.getString("GENDER"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 		return mem;
 	}
@@ -132,7 +132,7 @@ public class MemberDAOImpl implements MemberDAO {
 		try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD).getConnection()
 					.createStatement().executeUpdate(String.format(MemberQuery.UPDATE.toString(),
-							member.getPassword().split("/")[1], member.getPassword().split("/")[0], member.getMemId()));
+							member.getPassword(), member.getTeamId(), member.getRoll() , member.getMemId()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,6 +170,7 @@ public class MemberDAOImpl implements MemberDAO {
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setSsn(rs.getString("SSN"));
 				mem.setTeamId(rs.getString("TEAMID"));
+				mem.setGender(rs.getString("GENDER"));
 			} else {
 				mem = new MemberBean();
 				mem.setAge("999");
