@@ -12,18 +12,36 @@
 </div>
 <script>
 document.getElementById('goHome').addEventListener('click',function(){
-	router.move(["${context}","member","move","index"]);
+	router.move({ context : "${context}",
+		domain : "member",
+		action : "move",
+		page : "index"});
 });
 document.getElementById('goAdmin').addEventListener('click',function(){
-	router.move(["${context}","admin","move","main"]);
+	router.move({ context : "${context}",
+		domain : "admin",
+		action : "move",
+		page : "main"});
 });
 document.getElementById('goSearchId').addEventListener('click',function(){
-	router.move(["${context}","member","move","search_id_form"]);
+	router.move({ context : "${context}",
+		domain : "member",
+		action : "move",
+		page : "search_id_form"});
+	
 });
 document.getElementById('goList').addEventListener('click',function(){
-	router.move(["${context}","member","list","member_list"]);
+	router.move({ context : "${context}",
+		domain : "member",
+		action : "list",
+		page : "member_list"});
+	
 });
 document.getElementById('goDelete').addEventListener('click',function(){
-	router.move(["${context}","member","move","delete_form"]);
+	router.move({context : "${context}",
+		domain : "member",
+		action : "move",
+		page : "delete_form"});
+	
 });
 </script>

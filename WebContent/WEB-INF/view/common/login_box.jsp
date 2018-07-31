@@ -22,7 +22,6 @@ document.getElementById('goJoinForm')
 			domain: 'member',
 			action: 'move',
 			page: 'join_form'};
-	alert(x.context);
 	router.move(x);
 });
 </script>

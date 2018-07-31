@@ -23,7 +23,7 @@ public class LoginCommand extends Command {
 		mem=MemberServiceImpl.getInstance().login(mem);
 		if (MemberServiceImpl.getInstance().showOneList(mem) == false && !mem.getAge().equals("999")) {
 			request.setAttribute("match", "TRUE");
-			request.setAttribute("user", MemberServiceImpl.getInstance().login(mem));
+			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().login(mem));
 		} else {
 			request.setAttribute("match", "FALSE");
 		}

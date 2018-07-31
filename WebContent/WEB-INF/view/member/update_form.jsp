@@ -4,16 +4,14 @@
 <html lang="en">
 <jsp:include page="../common/header.jsp" />
 <body>
-	<table id="admin-tab-layout" class="margin-auto">
-		<tr class="height-140">
-			<td colspan="2"><img src="resources/img/home/head.png"
-				style="height: 135px; width: 100%" alt="" /></td>
-		</tr>
-		<tr style="height: 500px; width: 100%">
-			<td id="admin-tab-layout-td" align="center">
-
-
-				<form id="update_id" name="update_name">
+	<div id="wrapper">
+		<div id="header">
+			<jsp:include page="../common/title_box.jsp" />
+			<jsp:include page="../common/login_box.jsp" />
+			<jsp:include page="../common/menu_box.jsp" />
+		</div>		<!-- header end -->
+		<div id="content">
+<form id="update_id" name="update_name">
 					<table>
 						<tr>
 							<td colspan="3" rowspan="3"><img
@@ -31,7 +29,7 @@
 							<td colspan="2"><input type="text" name="pass" /></td>
 						</tr>
 						<tr>
-							<td colspan="3"><input type="button" id="mypageMove"
+							<td colspan="3"><input type="button" id="mypageMoveBtn"
 								value="♥내페이지로 돌아가기" /></td>
 							<td>나이</td>
 							<td colspan="2">${user.age}세</td>
@@ -73,21 +71,29 @@
 						type="hidden" name="page" value="mypage" /> <input type="button"
 						id="updateConfirmBtn" value="수정확인" />
 				</form>
+		<form id="moveMain">
+
+	<input type="button" id="mainMoveBtn" value="메인으로가기"/>
+	</form>
 
 
-			</td>
-			<td align="center">
-				<div id="admin-login-layout">
-					<h2>정보 수정</h2>
-				</div> 
-			</td>
-		</tr>
-		<tr style="height: 140px; width: 100%">
-			<td class="width-80pt" colspan="2"></td>
-		</tr>
-	</table>
-<script>
-	document.getElementById('mypageMove').addEventListener('click', function() {
+		</div>		<!-- content end -->
+		<div id="footer">
+		<jsp:include page="../common/footer.jsp" />
+		</div>
+	</div>
+	<script>
+document.getElementById("mainMoveBtn").addEventListener('click', function(){
+	router.move({
+		context : "${context}" ,
+		domain : "member" , 
+		action : "move" ,
+		page : "index"
+	});
+});
+
+
+	document.getElementById('mypageMoveBtn').addEventListener('click', function() {
 		router.move({
 			context : '${context}',
 			domain : 'member',
@@ -96,7 +102,7 @@
 		});
 	});
 
-	var form = document.getElementById('update_id');
+	
 	var roll = document.getElementById('roll');
 	for(var i=0 ; i< roll.options.length;i++){
 		if(roll.options[i].value==='${user.roll}'){
@@ -108,10 +114,11 @@
 			document.getElementById('teamid_'+i).checked =true;
 		}
 	}
-	
+	//document.getElementById(${user.teamId}).checked =true;
 	document.getElementById("updateConfirmBtn").addEventListener(
 			'click',
 			function() {				
+				var form = document.getElementById('update_id');
 				form.action = "${context}/member.do";
 				form.method = "post";
 				if (form.pass.value === "") {

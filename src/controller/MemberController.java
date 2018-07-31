@@ -29,6 +29,8 @@ public class MemberController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Sentry.init(request);
+		System.out.println(request.getContextPath());
+		
 		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE:
 			if (request.getParameter("page").equals("index")) {
@@ -54,11 +56,7 @@ public class MemberController extends HttpServlet {
 			break;
 		case LOGIN:
 			if (request.getAttribute("match").equals("TRUE")) {
-				request.getSession()
-				.setAttribute("user", 
-						request.getAttribute("user"));
-			/*	Sentry.cmd.setPage("mypage");
-				Sentry.cmd.execute();*/
+				
 				Carrier.forward(request, response);
 			} else {
 				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");

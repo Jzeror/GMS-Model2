@@ -11,5 +11,19 @@ String a = (String)request.getAttribute("createResult");
 </head>
 <body>
 	<%=a %>
+	<form id="moveMain">
+	<input type="hidden" name="action" value="move" />
+	<input type="hidden" name="page" value="index" />
+	<input type="button" id="moveMainBtn" value="메인으로가기"/>
+	</form>
+	
+	<script>
+	document.getElementById("moveMainBtn").addEventListener('click', function(){
+		var form = document.getElementById("moveMain");
+		form.action = "${context}/member.do";
+		form.method = "get";
+		form.submit();
+	});
+	</script>
 </body>
 </html>

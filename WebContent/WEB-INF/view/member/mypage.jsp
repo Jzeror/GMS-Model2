@@ -36,7 +36,9 @@
 		</tr>
 		<tr>
 			<td colspan="3">
-				<input type="button" id="mypageMove" value="업데이트하러가기"></a>
+				<input type="button" id="mypageMove" value="업데이트하러가기">
+				<!-- <a id="mypageMoveToDelete">삭제하러가기</a> -->
+				<input type="button" id="mypageMoveToDelete" value="삭제하러가기">
 			</td>
 			
 			
@@ -91,15 +93,17 @@
 
 
 
-
-
-
-
-
-
-
 </body>
 <script>
+document.getElementById("mypageMoveToDelete")
+.addEventListener('click', function(){
+	 router.move({
+		 context :'${context}',
+		 domain : 'member',
+		 action : 'move',
+		 page : 'delete_form'});
+});
+
 			document.getElementById('mypageMove').addEventListener('click', function(){
 				router.move({
 					 context :'${context}',
