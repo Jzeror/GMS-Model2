@@ -16,10 +16,8 @@ document.getElementById('goHome')
 });
 document.getElementById('goAdmin')
 .addEventListener('click', function(){ 
-	router.move({
-		context : '${context}',
-		domain : 'admin',
-		action : 'move',
-		page : 'main'});
+	admin.check("${context}");
 });
+
+
 </script>

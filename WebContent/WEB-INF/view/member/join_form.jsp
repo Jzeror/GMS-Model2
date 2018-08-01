@@ -17,9 +17,6 @@
  		이름 : <input type="text" name="name" /><br>
  		비밀번호 : <input type="text" name="password" /><br>
  		주민등록번호(ex.940501-2) : <input type="text" name="ssn" />
- 		<input type="hidden" name="action" value="join" />
- 		<input type="hidden" name="gender"  />
- 		<input type="hidden" name="age"  />
  		<br /><br />
  		소속팀
  		<input type = "radio" name="teamid"
@@ -65,18 +62,39 @@
 	<script>
 	document.getElementById('join_form_btn').addEventListener('click', function(){
 	 	var form = document.getElementById("join_form");
-	 	var node = document.createElement('input');
-	 	node.innerHTML = '<input type="hidden" name="action" value="join" />',
-	 			'<input type="hidden" name="gender" />',
-	 			'<input type="hidden" name="age" />'; 
-	 	form.appendChild(node);
+/* 	 	var node1 = document.createElement('input');
+	 	node1.innerHTML = '<input type="hidden" name="action" value="join" />';
+	 	var node2 = document.createElement('input');
+	 	node2.innerHTML = '<input type="hidden" name="gender"  />';
+	 	var node3 = document.createElement('input');
+	 	node3.innerHTML = '<input type="hidden" name="age"  />';
+	 	form.appendChild(node1);
+	 	form.appendChild(node2);
+	 	form.appendChild(node3); */
+	 
+	 	
+	 	
 	 	var x = service.nullChecker([form.memid.value,form.password.value,form.name.value,form.ssn.value]);	
 	 	if(x.checker){
+	 		mem.join(form.ssn.value);
+	 		/* 	node.setAttribute('action','join');
+	 			node.setAttribute('gender',mem.getGender());
+	 			node.setAttribute('age',mem.getAge()); */
+	 	var j=[
+	 		{name:'action', value:'join'},
+	 		{name:'gender', value:mem.getGender()},
+	 		{name:'age', value : mem.getAge()}
+	 		];
+	 		for(var i in j){
+	 			var node = document.createElement('input');
+	 			node.setAttribute('type','hidden' );	 
+	 			node.setAttribute('name', j[i].name );
+	 			node.setAttribute('value', j[i].value);
+	 			form.appendChild(node);
+	 			
+	 			}
 			form.action="${context}/member.do";
 			form.method="post";
-			mem.join(form.ssn.value);
-			form.gender.value=mem.getGender();
-			form.age.value=mem.getAge();
 			form.submit();
 		}else{
 			alert(x.text);

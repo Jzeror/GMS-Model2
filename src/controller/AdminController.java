@@ -27,6 +27,14 @@ public class AdminController extends HttpServlet {
 				Carrier.forward(request, response);
 			}
 			break;
+		case LIST:
+			Carrier.forward(request, response);
+			break;
+		case RETRIEVE:
+			Carrier.forward(request, response);
+			break;
+		default:
+			break;
 		}
 	}
 

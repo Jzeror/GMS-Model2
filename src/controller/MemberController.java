@@ -28,9 +28,7 @@ public class MemberController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Sentry.init(request);
-		System.out.println(request.getContextPath());
-		
+		Sentry.init(request);		
 		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE:
 			if (request.getParameter("page").equals("index")) {

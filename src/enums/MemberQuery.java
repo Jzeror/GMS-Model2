@@ -33,7 +33,7 @@ public enum MemberQuery {
 			query = " SELECT MEM_ID , TEAM_ID , NAME , AGE, ROLL FROM MEMBER WHERE TEAM_ID LIKE '%s' ";
 			break;
 		case SERCH_ID:
-			query = " SELECT MEM_ID , PASSWORD , SSN , TEAM_ID , NAME , AGE, ROLL, GENDER FROM MEMBER WHERE MEM_ID LIKE '%s' ";
+			query = " SELECT MEM_ID, NAME, PASSWORD, SSN, AGE, GENDER, ROLL, TEAM_ID FROM MEMBER WHERE MEM_ID LIKE '%s' ";
 			break;
 		}
 

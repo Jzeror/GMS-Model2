@@ -81,3 +81,51 @@ var mem=(()=> {
 		}
 	};
 })();
+
+var admin = (()=>{
+	return{
+		check : x=>{
+			var isAdmin = confirm('관리자니?');
+			if(isAdmin){
+				var password = prompt('관리자비번을 입력바랍니다');
+				if(password == 1){
+					router.move({
+						context : x,
+						domain : 'admin',
+						action : 'list',
+						page : 'main'});
+				}
+			}else{
+				alert('솔직하구나');
+			}
+		}
+	};})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*var  l= (()=>{
+	return{
+		checkl : x=>{
+			if(${user.memId}===""){
+		}else {
+			router.move({
+						context : x,
+						domain : 'member',
+						action : 'move',
+						page : 'main'});
+		}
+		}
+};})();*/

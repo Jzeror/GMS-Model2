@@ -6,6 +6,7 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
+		<관리자 페이지>
 			<jsp:include page="../common/title_box.jsp" />
 			<jsp:include page="menu_box.jsp" />
 		</div>

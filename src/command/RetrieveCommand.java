@@ -18,6 +18,7 @@ public class RetrieveCommand extends Command{
 	public void execute() {
 		MemberBean mem = new MemberBean();
 			mem.setMemId(request.getParameter("idsearch"));
-		request.setAttribute("member", mem = MemberServiceImpl.getInstance().showList(mem));
+			mem= MemberServiceImpl.getInstance().showList(mem);
+		request.setAttribute("member",mem);
 		super.execute();}
 }

@@ -55,7 +55,6 @@
 						<tr>
 							<td>현재 역할 : ${user.roll}</td>
 							<td colspan="2"><select name="roll" id="roll">
-									<option value="" selected="selected">선택하세요</option>
 									<option value="leader">팀장</option>
 									<option value="front">프론트개발</option>
 									<option value="back">백단개발</option>
@@ -92,7 +91,6 @@ document.getElementById("mainMoveBtn").addEventListener('click', function(){
 	});
 });
 
-
 	document.getElementById('mypageMoveBtn').addEventListener('click', function() {
 		router.move({
 			context : '${context}',
@@ -122,11 +120,12 @@ document.getElementById("mainMoveBtn").addEventListener('click', function(){
 				form.action = "${context}/member.do";
 				form.method = "post";
 				if (form.pass.value === "") {
-					mem.setPassword('${user.password}');
-				} else {
+					mem.setPassword(${user.password});
+				} else{
 					mem.setPassword(form.pass.value)
 				}
 				form.pass.value = mem.getPassword();
+				alert(form.pass.value);
 				form.submit();
 			});
 </script>

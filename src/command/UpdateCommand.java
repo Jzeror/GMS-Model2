@@ -16,12 +16,12 @@ public class UpdateCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		
+		System.out.println("업데이트 롤 : "+request.getParameter("roll"));
 			MemberBean mem = new MemberBean();
 			mem.setMemId(request.getParameter("memId"));
 			mem.setPassword(request.getParameter("pass"));
 			mem.setRoll(request.getParameter("roll"));
-			mem.setTeamId(request.getParameter("team"));
+			mem.setTeamId(request.getParameter("teamid"));
 			MemberServiceImpl.getInstance().modifyMember(mem);
 			setPage("mypage");
 			super.execute();

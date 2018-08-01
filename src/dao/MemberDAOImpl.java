@@ -88,25 +88,23 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	@Override
 	public MemberBean selectList(MemberBean member) {
-		MemberBean mem = null;
+
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD).getConnection().createStatement().executeQuery(String.format(MemberQuery.SERCH_ID.toString(),member.getMemId()));
 			while(rs.next()) {
-			mem = new MemberBean();	
-			mem.setAge(rs.getString("AGE"));
-			mem.setMemId(rs.getString("MEM_ID"));
-			mem.setName(rs.getString("NAME"));
-			mem.setPassword(rs.getString("PASSWORD"));
-			mem.setRoll(rs.getString("ROLL"));
-			mem.setSsn(rs.getString("SSN"));
-			mem.setTeamId(rs.getString("TEAM_ID"));
-			mem.setGender(rs.getString("GENDER"));
+				member.setMemId(rs.getString("MEM_ID"));
+				member.setAge(rs.getString("AGE"));
+				member.setName(rs.getString("NAME"));
+				member.setPassword(rs.getString("PASSWORD"));
+				member.setRoll(rs.getString("ROLL"));
+				member.setSsn(rs.getString("SSN"));
+				member.setTeamId(rs.getString("TEAM_ID"));
+				member.setGender(rs.getString("GENDER"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return mem;
+		return member;
 	}
 
 	@Override
