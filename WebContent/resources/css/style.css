@@ -3,7 +3,12 @@ table, tr, th, td {
 	border-collapse: collapse;
 }
 .bgColorisYellow{background-color: #ffff00}
-
+.width85pt{width:85%}
+.width1000px{width:1000px}
+.textAlignRight{text-align : right}
+.marginAtuo{margin : auto}
+.cursor{cursor : point}
+.fontColorBlue{color : blue}
 
 body {
 	font-family: 'Malgun Gothic', 'Verdana';

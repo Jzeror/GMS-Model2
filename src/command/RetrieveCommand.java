@@ -16,9 +16,20 @@ public class RetrieveCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		MemberBean mem = new MemberBean();
-			mem.setMemId(request.getParameter("idsearch"));
-			mem= MemberServiceImpl.getInstance().showList(mem);
-		request.setAttribute("member",mem);
-		super.execute();}
+
+		super.execute();
+		switch(request.getParameter("searchOption")) {
+		case "userId":
+			MemberBean mem = new MemberBean();
+			mem.setMemId(request.getParameter("searchWord"));
+			request.setAttribute("user",MemberServiceImpl.getInstance().showList(mem));
+			break;
+		case "name": case "team_id":
+			request.setAttribute("list", MemberServiceImpl.getInstance().showSomeList(request.getParameter("searchOption")+"/"+request.getParameter("searchWord"))); 
+			break;
+		}
+
+			
+		
+		}
 }

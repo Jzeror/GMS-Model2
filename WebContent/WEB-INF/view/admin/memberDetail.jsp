@@ -16,13 +16,13 @@
 
 	<table>
 		<tr>
-			<td colspan="3" rowspan="3"><img src="${img}/mypage/${member.memId}.jpg" width="130" height="200" alt="" /></td>
+			<td colspan="3" rowspan="3"><img src="${img}/mypage/${user.memId}.jpg" width="130" height="200" alt="" /></td>
 			<td>ID</td>
-			<td colspan="2">${member.memId}</td>
+			<td colspan="2">${user.memId}</td>
 		</tr>
 		<tr>
 			<td>이름</td>
-			<td colspan="2">${member.name}</td>
+			<td colspan="2">${user.name}</td>
 		</tr>
 		<tr>
 			<td>비번</td>
@@ -37,20 +37,20 @@
 			
 			
 			<td>나이</td>
-			<td colspan="2">${member.age}세</td>
+			<td colspan="2">${user.age}세</td>
 		</tr>
 		<tr>
 			<td>팀 아이디</td>
-			<td colspan="2">${member.teamId}</td>
+			<td colspan="2">${user.teamId}</td>
 
 			<td>성별</td>
-			<td colspan="2">${member.gender}</td>
+			<td colspan="2">${user.gender}</td>
 		</tr>
 		<tr>
 			<td>역할</td>
-			<td colspan="2">${member.roll}</td>
+			<td colspan="2">${user.roll}</td>
 			<td>주민등록번호</td>
-			<td colspan="2">${member.ssn}</td>
+			<td colspan="2">${user.ssn}</td>
 		</tr>
 	</table>
 			

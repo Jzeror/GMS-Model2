@@ -47,13 +47,15 @@ public class MemberDAOImpl implements MemberDAO {
 			MemberBean mem = null;
 			while (rs.next()) {
 				mem = new MemberBean();
-				mem.setMemId(rs.getString("ADMINID"));
-				mem.setTeamId(rs.getString("TEAMID"));
+				mem.setMemId(rs.getString("MEM_ID"));
+				mem.setTeamId(rs.getString("TEAM_ID"));
 				mem.setName(rs.getString("NAME"));
 				mem.setAge(rs.getString("AGE"));
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setPassword(rs.getString("PASSWORD"));
 				mem.setSsn(rs.getString("SSN"));
+				mem.setGender(rs.getString("GENDER"));
+				
 				lst.add(mem);
 			}
 		} catch (Exception e) {
@@ -65,25 +67,31 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<MemberBean> selectSomeList(String member) {
 		List<MemberBean> lst = new ArrayList<>();
+		System.out.println(member.split("/")[0].toUpperCase());
+		System.out.println(member.split("/")[1].toUpperCase());
 		try {
 		ResultSet rs= DatabaseFactory
 				.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
 				.getConnection()
 				.createStatement()
-				.executeQuery(String.format(MemberQuery.SEARCHTEAM.toString(),member));
-		 MemberBean temp = null; 
+				.executeQuery(String.format(MemberQuery.SEARCHTEAM.toString(),member.split("/")[0].toUpperCase(),member.split("/")[1]));
+		 MemberBean mem = null; 
 		 while(rs.next()) {
-			 temp = new MemberBean();
-			 temp.setTeamId(rs.getString("TEAM_ID"));
-			 temp.setName(rs.getString("NAME"));
-			 temp.setMemId(rs.getString("MEM_ID"));
-			 temp.setAge(rs.getString("AGE"));
-			 temp.setRoll(rs.getString("ROLL"));
-			 lst.add(temp);
+				mem = new MemberBean();
+				mem.setMemId(rs.getString("MEM_ID"));
+				mem.setTeamId(rs.getString("TEAM_ID"));
+				mem.setName(rs.getString("NAME"));
+				mem.setAge(rs.getString("AGE"));
+				mem.setRoll(rs.getString("ROLL"));
+				mem.setPassword(rs.getString("PASSWORD"));
+				mem.setSsn(rs.getString("SSN"));
+				mem.setGender(rs.getString("GENDER"));
+			 lst.add(mem);
 		 }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(lst);
 		return lst;
 	}
 	@Override
@@ -161,13 +169,13 @@ public class MemberDAOImpl implements MemberDAO {
 					.executeQuery(String.format(MemberQuery.LOGIN.toString(), bean.getMemId(), bean.getPassword()));
 			if (rs.next()) {
 				mem = new MemberBean();
-				mem.setMemId(rs.getString("ADMINID"));
+				mem.setMemId(rs.getString("MEM_ID"));
 				mem.setAge(rs.getString("AGE"));
 				mem.setName(rs.getString("NAME"));
 				mem.setPassword(rs.getString("PASSWORD"));
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setSsn(rs.getString("SSN"));
-				mem.setTeamId(rs.getString("TEAMID"));
+				mem.setTeamId(rs.getString("TEAM_ID"));
 				mem.setGender(rs.getString("GENDER"));
 			} else {
 				mem = new MemberBean();

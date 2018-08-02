@@ -19,6 +19,12 @@ var service = (()=>{
 				}
 			};
 			return j;
+		},
+		addClass : (dom,cName)=>{
+			var arr = cName.split(" ");
+			if(arr.indexOf(cName) == -1){
+				dom.className += " " + cName;
+			}
 		}
 	}
 })();
@@ -84,20 +90,59 @@ var mem=(()=> {
 
 var admin = (()=>{
 	return{
-		check : x=>{
-			var isAdmin = confirm('관리자니?');
+		check : x=>{router.move({
+			context : x,
+			domain : 'admin',
+			action : 'list',
+			page : 'main'});
+/*			var isAdmin = confirm('관리자니?');
 			if(isAdmin){
 				var password = prompt('관리자비번을 입력바랍니다');
-				if(password == 1){
+				if(password == 3){
 					router.move({
 						context : x,
 						domain : 'admin',
 						action : 'list',
 						page : 'main'});
-				}
+				}else{alert('이상한짓 하지마렴 준아');}
 			}else{
 				alert('솔직하구나');
+			}*/
+		},
+		main : x=>{
+
+			 document.getElementById('searchBtn').addEventListener('click',function(){
+				 var j = document.getElementById('searchOption');
+				 var k = document.getElementById('searchWord');
+				 location.href=(j.value==="userId")?x+'/admin.do?action=retrieve&page=memberDetail&searchWord='
+						 +k.value+'&searchOption='+j.value
+						 :
+							 x+'/admin.do?action=retrieve&page=main&searchOption='
+									 +j.value+'&searchWord='+k.value; 
+			});
+			service.addClass(
+					document.getElementById('content_box'),
+					'textAlignRight '
+					);
+			service.addClass(
+					document.getElementById('contentBoxMeta'),
+					'bgColorisYellow '
+					);
+			service.addClass(
+					document.getElementById('contentBoxTab'),
+					'width1000px marginAtuo '
+					);
+
+
+			for(i of document.querySelectorAll('.username') ){
+				service.addClass(
+						i,
+						'fontColorBlue cursor ');
+				i.addEventListener('click', function(){
+					location.href=x+'/admin.do?searchOption=userId&action=retrieve&page=memberDetail&searchWord='+this.getAttribute('id');
+				});
 			}
+
 		}
 	};})();
 
@@ -113,19 +158,3 @@ var admin = (()=>{
 
 
 
-
-
-
-/*var  l= (()=>{
-	return{
-		checkl : x=>{
-			if(${user.memId}===""){
-		}else {
-			router.move({
-						context : x,
-						domain : 'member',
-						action : 'move',
-						page : 'main'});
-		}
-		}
-};})();*/

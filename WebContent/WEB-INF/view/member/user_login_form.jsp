@@ -15,7 +15,7 @@
 			<h1>로그인</h1>
 			<form id="user-login-form-id" name="user_login_form_name">
 				id:<br> 
-				<input type="text" name="name"> 
+				<input type="text" name="memId"> 
 				<br> pass:
 				<br>
 				<input type="password" name="pass"> <br>
@@ -32,17 +32,15 @@
 	</div>
 	<script>
 		document.getElementById('loginFormBtn').addEventListener(
-				'click',
-				function() {
-					var form = document
-					.getElementById("user-login-form-id");
-					var node = document.createElement("input");
-					node.innerHTML= '<input type="hidden" name="action" value="login" />';
-					form.appendChild(node);
+				'click',function() {
+					var form = document.getElementById("user-login-form-id");
 					var x = service.nullChecker([
-							document.user_login_form_name.name.value,
+							form.name.value,
 							document.user_login_form_name.pass.value ]);
 					if (x.checker) {
+						var node = document.createElement("input");
+						node.innerHTML= '<input type="hidden" name="action" value="login" />';
+						form.appendChild(node);
 						form.action = "${context}/member.do";
 						form.method = "post";
 						form.submit();

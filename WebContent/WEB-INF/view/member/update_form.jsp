@@ -54,13 +54,15 @@
 						</tr>
 						<tr>
 							<td>현재 역할 : ${user.roll}</td>
-							<td colspan="2"><select name="roll" id="roll">
+							<td colspan="2">
+							<select name="roll" id="roll">
 									<option value="leader">팀장</option>
 									<option value="front">프론트개발</option>
 									<option value="back">백단개발</option>
 									<option value="android">안드로이드개발</option>
 									<option value="cheerLeader">응원단장</option>
-							</select></td>
+							</select>
+							</td>
 							<td>주민등록번호</td>
 							<td colspan="2">${user.ssn}</td>
 						</tr>

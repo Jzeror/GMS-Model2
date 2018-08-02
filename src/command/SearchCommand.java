@@ -24,7 +24,6 @@ public class SearchCommand extends Command {
 	@Override
 	public void execute() {
 
-
 	request.setAttribute("memlist", MemberServiceImpl.getInstance().showSomeList(request.getParameter("search"))); 
 		super.execute();}
 }

@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="content_box">
+	<div id="contentBoxSearch">
+		<select name="searchOption" id="searchOption">
+				<option value="none">검색조건</option>
+ 				<option value="userId">아이디</option>
+ 				<option value="name">이름</option>
+ 				<option value="team_id">팀 id</option>
+ 		</select>
+		<input type="text" id="searchWord" name="searchWord" placeholder="검색어 입력"/>
+		<input type="button" id="searchBtn" value="검색" />
+	</div>
+	
 	<table id="contentBoxTab">
 		<tr id="contentBoxMeta">
 			<th>아이디</th>
@@ -24,13 +35,5 @@
 	</table>
 </div>
  <script> 
-document.getElementById('contentBoxMeta').className='bgColorisYellow';
-var x = document.querySelectorAll('.username');
-for(i in x){
-	x[i].style.color = 'white';
-	x[i].style.cursor = 'pointer';
-	x[i].addEventListener('click', function(){
-		location.href='${context}/admin.do?action=retrieve&page=memberDetail&idsearch='+this.getAttribute('id');
-	});
-}
+  admin.main('${context}');
 </script>
