@@ -1,20 +1,18 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import domain.MemberBean;
 import enums.MemberQuery;
 import enums.Vendor;
 import enums.DBConstant2;
+import enums.Domain;
 import factory.DatabaseFactory;
 import pool.DBConstant;
-import service.MemberServiceImpl;
+import template.PstmtQuery;
+import template.QueryTemplate;
 
 public class MemberDAOImpl implements MemberDAO {
 	private static MemberDAO instance = new MemberDAOImpl();
@@ -62,7 +60,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return lst;
 	}
   
-	@Override
+/*	@Override
 	public List<MemberBean> selectSomeList(String member) {
 		List<MemberBean> lst = new ArrayList<>();
 		System.out.println(member.split("/")[0].toUpperCase());
@@ -91,7 +89,7 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		System.out.println(lst);
 		return lst;
-	}
+	}*/
 	@Override
 	public MemberBean selectList(MemberBean member) {
 
@@ -205,4 +203,19 @@ public class MemberDAOImpl implements MemberDAO {
 		return flag;
 
 	}
+	
+	public List<MemberBean> selectMemberBySearchWord(String word){
+		QueryTemplate q = new PstmtQuery();
+		List<MemberBean> list = new ArrayList<>();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("column", word.split("/")[0]);
+		map.put("value", word.split("/")[1]);
+		map.put("table", Domain.MEMBER);
+		q.play(map);
+		for(Object s: q.getList()) {
+			list.add((MemberBean)s);
+		}
+		return list;
+	}
+	
 }

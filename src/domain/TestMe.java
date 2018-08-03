@@ -8,21 +8,22 @@ import dao.TestDAOMe;
 public class TestMe {
 	public static void main(String[] args) {
 
-		List<String> list = TestDAOMe.getInstance().list();
-		String[] ssn = new String[20];
-		int a = 0, c = 0;
-		for (int i = 0; i < list.size(); i++) {
+		
+
+		int a = 0, c = 0, b=0;
+		String  d="";
+		for (int i = 0; i <5; i++) {
 			for (int s = 0; s < 10; s++) {
+				b= (int) ((Math.random() * 10) + 70);
 				a = (int) ((Math.random() * 12) + 1);
-				c = (int) ((Math.random() * 12) + 1);
+				c = (int) ((Math.random() * 30) + 1);
+				d = String.valueOf((int) ((Math.random() * 2) + 1));
 			}
-			ssn[i] = String
-					.valueOf(119 - Integer.parseInt(list.get(i)) 
+			String ssn = String.format("%02d", b)
 							+ String.format("%02d", a) 
-							+ String.format("%02d", c));
+							+ String.format("%02d", c)
+							+"-"+d;
 		}
-		for (int i = 0; i < 20; i++) {
-			System.out.println("[" + i + "] : " + ssn[i]);
-		}
+	
 	}
 }

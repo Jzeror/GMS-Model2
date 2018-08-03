@@ -6,18 +6,20 @@ import javax.servlet.http.HttpServletResponse;
 import service.MemberServiceImpl;
 
 public class CountCommand extends Command {
-	public CountCommand(HttpServletRequest request, HttpServletResponse response) {
+	public CountCommand() {
 		setRequest(request);
-		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
-		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
+		setDomain("admin");
+		setAction("count");
+		setPage("main");
 		execute();
 	}
 	@Override
 	public void execute() {
-		request.setAttribute("count",
-				MemberServiceImpl.getInstance().showCountList());
 		super.execute();
+		MemberServiceImpl.getInstance().createR();
+		/*request.setAttribute("count",
+				MemberServiceImpl.getInstance().showCountList());*/
+		/*super.execute();*/
 	}
 	
 }

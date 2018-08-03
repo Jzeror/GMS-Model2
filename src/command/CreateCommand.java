@@ -28,7 +28,7 @@ public class CreateCommand extends Command {
 		mem.setAge(request.getParameter("age"));
 		mem.setRoll(request.getParameter("roll"));
 		mem.setTeamId(request.getParameter("teamid"));
-		mem.setSubject(ParamMap.getValues(request, "subject"));
+		
 		if(MemberServiceImpl.getInstance().showOneList(mem)==true) {
 			MemberServiceImpl.getInstance().createMemId(mem);
 			request.setAttribute("createResult", "회원가입");

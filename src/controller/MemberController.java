@@ -40,9 +40,11 @@ public class MemberController extends HttpServlet {
 		case JOIN:
 			Carrier.forward(request, response);
 			break;
-		case LIST:case SEARCH:case RETRIEVE:case COUNT:
+		case LIST:case SEARCH:case RETRIEVE:
 			
 			Carrier.forward(request, response);
+			break;
+		case COUNT: Carrier.forward(request, response);;
 			break;
 		case UPDATE:
 			Sentry.cmd.setPage("mypage");

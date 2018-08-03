@@ -32,6 +32,9 @@ public class Commander {
 		case LIST:
 			cmd = new ListCommand(request);
 			break;
+		case COUNT:
+			cmd = new CountCommand();
+			break;
 		}
 		return cmd;
 	}

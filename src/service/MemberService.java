@@ -6,7 +6,7 @@ import domain.MemberBean;
 
 public interface MemberService {
 	public void createMemId(MemberBean mm);
-
+	public void createR();
 	public List<MemberBean> showAllList();
 
 	public List<MemberBean> showSomeList(String word);

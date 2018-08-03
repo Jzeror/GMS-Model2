@@ -4,7 +4,7 @@
 	<div id="contentBoxSearch">
 		<select name="searchOption" id="searchOption">
 				<option value="none">검색조건</option>
- 				<option value="userId">아이디</option>
+ 				<option value="user_Id">아이디</option>
  				<option value="name">이름</option>
  				<option value="team_id">팀 id</option>
  		</select>
@@ -21,7 +21,7 @@
 			<th>팀 명</th>
 			<th>역 할</th>
 		</tr>
-		<c:forEach  items="${list}"  var="mem" >
+		<c:forEach  items="${list}" var="mem" begin="1" end="50" step="1" >
 		<tr>
 			<td>${mem.memId}</td>
 			<td><a class="username" id="${mem.memId}" >${mem.name}</a></td>
@@ -32,6 +32,13 @@
 		<%--<td>${mem.getRoll()}</td>--%>
 		</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="6">
+				<c:forEach begin="1" end="${count/5+((count%5==0)?0:1)}" step="1" var="i" >
+					<span>${i}</span>
+				</c:forEach>
+			</td>
+		</tr>
 	</table>
 </div>
  <script> 

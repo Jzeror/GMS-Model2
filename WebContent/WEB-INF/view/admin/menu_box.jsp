@@ -8,6 +8,7 @@
 		<li><a id="goSearchId" >아이디찾기</a></li>
 		<li><a id="goList" >회원목록</a></li>
 		<li><a id="goDelete">삭제</a></li>
+		<li><a id="gorandom">랜덤아이디</a></li>
 	</ul>
 </div>
 <script>
@@ -42,6 +43,13 @@ document.getElementById('goDelete').addEventListener('click',function(){
 		domain : "member",
 		action : "move",
 		page : "delete_form"});
+	
+});
+document.getElementById('gorandom').addEventListener('click',function(){
+	router.move({context : "${context}",
+		domain : "member",
+		action : "count",
+		page : "index"});
 	
 });
 </script>
