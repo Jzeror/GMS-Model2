@@ -30,17 +30,11 @@ var service = (()=>{
 })();
 
 
-/*joinValidation : x=>{
-	if (x.getMemId() === "") {
-		alert("Please provide your id!");
-		return false;
-	} else if (x.getPassword() === "") {
-		alert("Please provide your pass!");
-		return false;
-	} else {
-		return true;
-	}
-}*/
+/*
+ * joinValidation : x=>{ if (x.getMemId() === "") { alert("Please provide your
+ * id!"); return false; } else if (x.getPassword() === "") { alert("Please
+ * provide your pass!"); return false; } else { return true; } }
+ */
 
 var mem=(()=> {
 	var _memId, _ssn, _password, _name, _age, _gender, _roll, _teamId; 
@@ -90,27 +84,17 @@ var mem=(()=> {
 
 var admin = (()=>{
 	return{
-		check : x=>{router.move({
-			context : x,
-			domain : 'admin',
-			action : 'list',
-			page : 'main'});
-/*			var isAdmin = confirm('관리자니?');
-			if(isAdmin){
-				var password = prompt('관리자비번을 입력바랍니다');
-				if(password == 3){
-					router.move({
-						context : x,
-						domain : 'admin',
-						action : 'list',
-						page : 'main'});
-				}else{alert('이상한짓 하지마렴 준아');}
-			}else{
-				alert('솔직하구나');
-			}*/
+		check : x=>{ var isAdmin = confirm('관리자니?');
+		if(isAdmin){ 
+			var password = prompt('관리자비번을 입력바랍니다');
+			if(password == 3){
+				router.move({ context : x, domain : 'admin', action : 'list', page : 'main'}); 
+			}else{alert('이상한짓 하지마렴 준아');} 
+		}else{
+			alert('솔직하구나'); 
+		}
 		},
 		main : x=>{
-
 			 document.getElementById('searchBtn').addEventListener('click',function(){
 				 var j = document.getElementById('searchOption');
 				 var k = document.getElementById('searchWord');

@@ -32,7 +32,6 @@ public class MemberDAOImpl implements MemberDAO {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString().toString(), DBConstant.PASSWORD).getConnection()
 					.createStatement().executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(),
 							mm.getMemId(),	mm.getName(), mm.getPassword(), mm.getSsn(), mm.getAge(), mm.getGender(), mm.getRoll(), mm.getTeamId()));
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,7 +54,6 @@ public class MemberDAOImpl implements MemberDAO {
 				mem.setPassword(rs.getString("PASSWORD"));
 				mem.setSsn(rs.getString("SSN"));
 				mem.setGender(rs.getString("GENDER"));
-				
 				lst.add(mem);
 			}
 		} catch (Exception e) {
@@ -69,12 +67,12 @@ public class MemberDAOImpl implements MemberDAO {
 		List<MemberBean> lst = new ArrayList<>();
 		System.out.println(member.split("/")[0].toUpperCase());
 		System.out.println(member.split("/")[1].toUpperCase());
-		try {
+		try {		
 		ResultSet rs= DatabaseFactory
 				.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
 				.getConnection()
 				.createStatement()
-				.executeQuery(String.format(MemberQuery.SEARCHTEAM.toString(),member.split("/")[0].toUpperCase(),member.split("/")[1]));
+				.executeQuery(" SELECT MEM_ID , TEAM_ID , NAME , AGE , ROLL , PASSWORD , SSN , GENDER FROM MEMBER WHERE "+member.split("/")[0].toUpperCase()+" LIKE '%"+member.split("/")[1]+"%'");
 		 MemberBean mem = null; 
 		 while(rs.next()) {
 				mem = new MemberBean();
