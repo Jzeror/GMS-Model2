@@ -61,7 +61,7 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return lst;
 	}
-
+  
 	@Override
 	public List<MemberBean> selectSomeList(String member) {
 		List<MemberBean> lst = new ArrayList<>();
