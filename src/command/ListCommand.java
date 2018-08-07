@@ -19,7 +19,8 @@ public class ListCommand extends Command{
 		setAction(request.getParameter("action"));
 		setPage(request.getParameter("page"));
 		execute();
-	}
+	} 
+	
 	@Override
 	public void execute() {
 			int count = MemberServiceImpl.getInstance().showCountList();
