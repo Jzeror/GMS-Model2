@@ -19,6 +19,7 @@ public class RetrieveCommand extends Command{
 
 		super.execute();
 		switch(request.getParameter("searchOption")) {
+		
 		case "userId":
 			MemberBean mem = new MemberBean();
 			mem.setMemId(request.getParameter("searchWord"));

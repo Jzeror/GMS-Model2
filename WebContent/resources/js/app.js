@@ -116,7 +116,7 @@ var admin = (()=>{
 					document.getElementById('contentBoxTab'),
 					'width1000px marginAtuo '
 					);
-
+			
 
 			for(i of document.querySelectorAll('.username') ){
 				service.addClass(
@@ -126,7 +126,17 @@ var admin = (()=>{
 					location.href=x+'/admin.do?searchOption=userId&action=retrieve&page=memberDetail&searchWord='+this.getAttribute('id');
 				});
 			}
+			
 
+			
+			
+			for(i of document.querySelectorAll(".pageNumber")){
+				 i.addEventListener('click',
+					function(){
+					 	 location.href = x +'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id')+'&endPage='+this.getAttribute('id');
+					 }		 
+				 );
+			 } 
 		}
 	};})();
 

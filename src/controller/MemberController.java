@@ -59,7 +59,7 @@ public class MemberController extends HttpServlet {
 				
 				Carrier.forward(request, response);
 			} else {
-				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");
+				Carrier.redirect(request, response, "");
 			}
 			break;
 		default:

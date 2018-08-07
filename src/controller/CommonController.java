@@ -7,12 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import enums.Domain;
 import enums.Term;
 
-@WebServlet("/common.do")
+@WebServlet("/common.do")       // /가 들어가네. 배열인 경우 ({"","",""})
 public class CommonController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	enum Resources{
@@ -29,6 +27,8 @@ public class CommonController extends HttpServlet {
 							"/resources/"+r.toString().toLowerCase());
 			i++;
 		}
+		
+		
 		/*	HttpSession session = request.getSession();
 		session.setAttribute(Domain.CONTEXT.toString(), request.getContextPath());*/
 		//setAttr가 된 session객체의 값을 request에 넣어주지 않았는데 어떻게?

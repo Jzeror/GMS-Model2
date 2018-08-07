@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import domain.MemberBean;
 import enums.MemberQuery;
 import enums.Vendor;
@@ -217,5 +219,19 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return list;
 	}
-	
+
+	@Override
+	public List<MemberBean> selectAllList5555(Map<?,?> param) {
+		QueryTemplate q = new PstmtQuery();
+		List<MemberBean> list = new ArrayList<>();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("beginRow", param.get("beginRow"));
+		map.put("endRow", param.get("endRow"));
+		map.put("table", Domain.MEMBER);
+		q.play(map);
+		for(Object s: q.getList()) {
+			list.add((MemberBean)s);
+		}
+		return list;
+	}
 }

@@ -38,5 +38,5 @@ from member m order by seq desc) t
 select t.*
 from (select rownum seq, m.*
 from member m order by seq desc) t
-where t.seq between 15 and 20
+where t.seq between 1 and 5
 ;   --이게 페이지 쿼리가 됨. 사용자는 페이지를 클릭하고 자바가 그 페이지에 해당하는 시작값과 끝값을 주면 됨

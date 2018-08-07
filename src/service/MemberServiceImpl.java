@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -151,12 +152,11 @@ public class MemberServiceImpl implements MemberService{
 		case 4: teamid="D"; break;
 		}
 		String roll="";
-		switch((int)((Math.random()*5)+1)) {
-		case 1: roll="leader"; break;
-		case 2: roll="front"; break;
-		case 3: roll="back"; break;
-		case 4: roll="android"; break;
-		case 5: roll="cheerLeader"; break;
+		switch((int)((Math.random()*4)+1)) {
+		case 1: roll="front"; break;
+		case 2: roll="back"; break;
+		case 3: roll="android"; break;
+		case 4: roll="cheerLeader"; break;
 		}
 		MemberBean mem = new MemberBean();
 		mem.setAge(String.valueOf(age));
@@ -171,6 +171,11 @@ public class MemberServiceImpl implements MemberService{
 		MemberDAOImpl.getInstance().insertMemId(mem);
 		}
 			
+	}
+	@Override
+	public List<MemberBean> showAllList55555(Map<?,?> param) {
+			
+		return MemberDAOImpl.getInstance().selectAllList5555(param);
 	}
 }
 

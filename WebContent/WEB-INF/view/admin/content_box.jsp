@@ -4,7 +4,7 @@
 	<div id="contentBoxSearch">
 		<select name="searchOption" id="searchOption">
 				<option value="none">검색조건</option>
- 				<option value="user_Id">아이디</option>
+ 				<option value="userId">아이디</option>
  				<option value="name">이름</option>
  				<option value="team_id">팀 id</option>
  		</select>
@@ -21,7 +21,7 @@
 			<th>팀 명</th>
 			<th>역 할</th>
 		</tr>
-		<c:forEach  items="${list}" var="mem" begin="1" end="50" step="1" >
+		<c:forEach  items="${list}" var="mem"  >
 		<tr>
 			<td>${mem.memId}</td>
 			<td><a class="username" id="${mem.memId}" >${mem.name}</a></td>
@@ -34,13 +34,30 @@
 		</c:forEach>
 		<tr>
 			<td colspan="6">
-				<c:forEach begin="1" end="${count/5+((count%5==0)?0:1)}" step="1" var="i" >
-					<span>${i}</span>
-				</c:forEach>
+				<ul class="pageBox">
+					<c:forEach begin="${beginPage}" end="${endPage}" step="1" varStatus="i">
+						<li>
+						<a class="pageNumber" id="${i.index}" >${i.index}</a>
+						</li>
+						
+					</c:forEach>
+					<c:if test="${countTF}">
+						<li>
+						<a id="moveNext">다음▶</a>
+						</li>
+					</c:if>
+				</ul>
 			</td>
 		</tr>
 	</table>
 </div>
- <script> 
+ <script>
+
   admin.main('${context}');
+  
+	document.getElementById("moveNext").addEventListener('click',function(){
+		 location.href = '${context}/admin.do?action=list&page=main&endPage=${endPage}';
+	});
+	
+	
 </script>

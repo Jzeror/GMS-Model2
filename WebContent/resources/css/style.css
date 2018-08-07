@@ -9,7 +9,14 @@ table, tr, th, td {
 .marginAtuo{margin : auto}
 .cursor{cursor : point}
 .fontColorBlue{color : blue}
-
+.pageBox{
+	list-style:none;			 /*Remove list bullets*/
+	padding: 0;
+	margin: 0;
+}
+.pageBox li{
+	display : inline
+}
 body {
 	font-family: 'Malgun Gothic', 'Verdana';
 	background-color: #008000;

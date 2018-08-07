@@ -16,9 +16,9 @@ public class CountCommand extends Command {
 	@Override
 	public void execute() {
 		super.execute();
-		MemberServiceImpl.getInstance().createR();
-		/*request.setAttribute("count",
+/*		request.setAttribute("count",
 				MemberServiceImpl.getInstance().showCountList());*/
+		MemberServiceImpl.getInstance().createR();
 		/*super.execute();*/
 	}
 	

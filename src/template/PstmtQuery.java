@@ -9,23 +9,30 @@ import factory.DatabaseFactory;
 import lombok.Data;
 @Data
 public class PstmtQuery extends QueryTemplate {
-
 	@Override
 	void initialize() {
+		if(map.get("column")!=null) {
 		map.put("sql",
 				String.format(" SELECT " + ColumnFinder.find(Domain.MEMBER) + " FROM %s " + " WHERE %s " + " LIKE ? ",
 						map.get("table"), map.get("column")));
+		}else {
+			map.put("sql",
+					String.format(" SELECT T.* FROM (SELECT ROWNUM SEQ, "+ ColumnFinder.find(Domain.MEMBER) + " FROM %s ORDER BY SEQ DESC) T	WHERE T.SEQ BETWEEN ? AND ? ",map.get("table")));
+		}
 	}
-
+	
 	@Override
 	void startPlay() {
-		System.out.println(map.get("sql"));
-		System.out.println(map.get("value")); // 디버깅용
 		/* String aa = "%"+map.get("value").toString()+"%"; */
 		try {
 			pstmt = DatabaseFactory.createDatabase2(map).getConnection().prepareStatement((String) map.get("sql"));
-			pstmt.setString(1, "%" + map.get("value".toString()) + "%");
-		
+			
+			if(map.get("column")!=null) {
+				pstmt.setString(1, "%" + map.get("value".toString()) + "%");
+			}else {
+				pstmt.setString(1,String.valueOf(map.get("beginRow".toString())));
+				pstmt.setString(2,String.valueOf(map.get("endRow".toString())));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
