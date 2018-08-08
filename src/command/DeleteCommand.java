@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
 		MemberBean mem = new MemberBean();
 		mem.setMemId(((MemberBean)request.getSession().getAttribute("user")).getMemId());
 		mem.setPassword(request.getParameter("pass"));
-		MemberServiceImpl.getInstance().removeMember(mem);
+		MemberServiceImpl.getInstance().remove(mem);
 		request.getSession().invalidate();
 		super.execute();
 	}

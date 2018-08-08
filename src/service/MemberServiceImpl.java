@@ -21,35 +21,23 @@ public class MemberServiceImpl implements MemberService{
 	private MemberServiceImpl() {}
 	@Override
 	public void createMemId(MemberBean mm) {
-		mm.setAge(String.valueOf(119 - Integer.parseInt(mm.getSsn().substring(0,2))));
-		MemberDAOImpl.getInstance().insertMemId(mm);
+		MemberDAOImpl.getInstance().insert(mm);
 	}
 	@Override
-	public List<MemberBean> showAllList() {
-		
-		return MemberDAOImpl.getInstance().selectAllList();
+	public boolean checkId(MemberBean mm) {
+		return MemberDAOImpl.getInstance().checkId(mm);	
 	}
 	@Override
-	public List<MemberBean> showSomeList(String word) {
-		
-		return MemberDAOImpl.getInstance().selectMemberBySearchWord(word);
+	public int count() {
+		return MemberDAOImpl.getInstance().count();
 	}
 	@Override
-	public boolean showOneList(MemberBean mm) {
-		return MemberDAOImpl.getInstance().selectOneList(mm);
+	public void modify(Map<?,?> param) {
+		MemberDAOImpl.getInstance().update(param);
 		
 	}
 	@Override
-	public int showCountList() {
-		return MemberDAOImpl.getInstance().countAccount();
-	}
-	@Override
-	public void modifyMember(MemberBean member) {
-		MemberDAOImpl.getInstance().update(member);
-		
-	}
-	@Override
-	public void removeMember(MemberBean member) {
+	public void remove(MemberBean member) {
 		MemberDAOImpl.getInstance().delete(member);
 		
 	}
@@ -57,14 +45,14 @@ public class MemberServiceImpl implements MemberService{
 	public MemberBean login(MemberBean member) {
 		return MemberDAOImpl.getInstance().login(member);
 	}
-/*	@Override
-	public String createAge(MemberBean mm) {
-
-		return String.valueOf(119 - Integer.parseInt(mm.getSsn().substring(0,2)));
-	}*/
 	@Override
-	public MemberBean showList(MemberBean member) {
-		return MemberDAOImpl.getInstance().selectList(member);
+	public MemberBean retrieve(String searchWord) {
+		return MemberDAOImpl.getInstance().selectOne(searchWord);
+	}
+	@Override
+	public List<MemberBean> search(Map<?,?> param) {
+			
+		return MemberDAOImpl.getInstance().selectSome(param);
 	}
 	@Override
 	public void createR() {
@@ -168,14 +156,9 @@ public class MemberServiceImpl implements MemberService{
 		mem.setSsn(ssn);
 		mem.setTeamId(teamid);
 		
-		MemberDAOImpl.getInstance().insertMemId(mem);
+		MemberDAOImpl.getInstance().insert(mem);
 		}
 			//
-	}
-	@Override
-	public List<MemberBean> showAllList55555(Map<?,?> param) {
-			
-		return MemberDAOImpl.getInstance().selectAllList5555(param);
 	}
 }
 

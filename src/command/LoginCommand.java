@@ -21,7 +21,7 @@ public class LoginCommand extends Command {
 		mem.setMemId(request.getParameter("memId"));
 		mem.setPassword(request.getParameter("pass"));
 		mem=MemberServiceImpl.getInstance().login(mem);
-		if (MemberServiceImpl.getInstance().showOneList(mem) == false && !mem.getAge().equals("999")) {
+		if (MemberServiceImpl.getInstance().checkId(mem) == false && !mem.getAge().equals("999")) {
 			request.setAttribute("match", "TRUE");
 			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().login(mem));
 		} else {

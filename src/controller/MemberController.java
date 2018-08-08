@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import command.Carrier;
 import command.CountCommand;
-import command.ListCommand;
+import command.SearchCommand;
 import command.RetrieveCommand;
 import command.SearchCommand;
 import command.Sentry;

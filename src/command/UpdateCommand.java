@@ -1,5 +1,8 @@
 package command;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import domain.MemberBean;
@@ -16,12 +19,14 @@ public class UpdateCommand extends Command{
 	}
 	@Override
 	public void execute() {
-			MemberBean mem = new MemberBean();
-			mem.setMemId(request.getParameter("memId"));
-			mem.setPassword(request.getParameter("pass"));
-			mem.setRoll(request.getParameter("roll"));
-			mem.setTeamId(request.getParameter("teamid"));
-			MemberServiceImpl.getInstance().modifyMember(mem);
+		Map<String, Object> param = new HashMap<>();
+		param.put("memID", request.getParameter("memId"));
+		param.put("pass", request.getParameter("pass"));
+		param.put("roll", request.getParameter("roll"));
+		param.put("teamId", request.getParameter("teamId"));
+		param.put("memID", request.getParameter("memId"));
+		
+		MemberServiceImpl.getInstance().modify(param);
 			setPage("mypage");
 			super.execute();
 		}

@@ -27,99 +27,38 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void insertMemId(MemberBean mm) {
-		try {
-			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString().toString(), DBConstant.PASSWORD).getConnection()
-					.createStatement().executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(),
-							mm.getMemId(),	mm.getName(), mm.getPassword(), mm.getSsn(), mm.getAge(), mm.getGender(), mm.getRoll(), mm.getTeamId()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void insert(MemberBean mm) {
+		QueryTemplate q =new PstmtQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("confirm","insert");
+		map.put("table", Domain.MEMBER);
+		map.put("memId", mm.getMemId());
+		map.put("name", mm.getName());
+		map.put("age", mm.getAge());
+		map.put("gender", mm.getGender());
+		map.put("password", mm.getPassword());
+		map.put("ssn", mm.getSsn());
+		map.put("roll", mm.getRoll());
+		map.put("teamId", mm.getTeamId());
+		q.play(map);
 	}
 
 	@Override
-	public List<MemberBean> selectAllList() {
-		List<MemberBean> lst = new ArrayList<>();
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
-					.getConnection().createStatement().executeQuery(MemberQuery.SELECT_ALL.toString());
-			MemberBean mem = null;
-			while (rs.next()) {
-				mem = new MemberBean();
-				mem.setMemId(rs.getString("MEM_ID"));
-				mem.setTeamId(rs.getString("TEAM_ID"));
-				mem.setName(rs.getString("NAME"));
-				mem.setAge(rs.getString("AGE"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setGender(rs.getString("GENDER"));
-				lst.add(mem);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return lst;
-	}
-  
-/*	@Override
-	public List<MemberBean> selectSomeList(String member) {
-		List<MemberBean> lst = new ArrayList<>();
-		System.out.println(member.split("/")[0].toUpperCase());
-		System.out.println(member.split("/")[1].toUpperCase());
-		try {		
-		ResultSet rs= DatabaseFactory
-				.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
-				.getConnection()
-				.createStatement()
-				.executeQuery(" SELECT MEM_ID , TEAM_ID , NAME , AGE , ROLL , PASSWORD , SSN , GENDER FROM MEMBER WHERE "+member.split("/")[0].toUpperCase()+" LIKE '%"+member.split("/")[1]+"%'");
-		 MemberBean mem = null; 
-		 while(rs.next()) {
-				mem = new MemberBean();
-				mem.setMemId(rs.getString("MEM_ID"));
-				mem.setTeamId(rs.getString("TEAM_ID"));
-				mem.setName(rs.getString("NAME"));
-				mem.setAge(rs.getString("AGE"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setGender(rs.getString("GENDER"));
-			 lst.add(mem);
-		 }
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println(lst);
-		return lst;
-	}*/
-	@Override
-	public MemberBean selectList(MemberBean member) {
-
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD).getConnection().createStatement().executeQuery(String.format(MemberQuery.SERCH_ID.toString(),member.getMemId()));
-			while(rs.next()) {
-				member.setMemId(rs.getString("MEM_ID"));
-				member.setAge(rs.getString("AGE"));
-				member.setName(rs.getString("NAME"));
-				member.setPassword(rs.getString("PASSWORD"));
-				member.setRoll(rs.getString("ROLL"));
-				member.setSsn(rs.getString("SSN"));
-				member.setTeamId(rs.getString("TEAM_ID"));
-				member.setGender(rs.getString("GENDER"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return member;
+	public MemberBean selectOne(String searchWord) {
+		QueryTemplate q = new PstmtQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("confirm", "selectOne");
+		map.put("searchWord", searchWord);
+		q.play(map);
+		return (MemberBean)q.getList().get(0);
 	}
 
 	@Override
-	public int countAccount() {
+	public int count() {
 		int count = 0;
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
 					.getConnection().createStatement().executeQuery(MemberQuery.COUNT_MEMBER.toString());
-
 			while (rs.next()) {
 				count = rs.getInt("count");
 			}
@@ -131,8 +70,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void update(MemberBean member) {
-
+	public void update(Map<?,?> param) {
+		MemberBean member =null;;
 		try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD).getConnection()
 					.createStatement().executeUpdate(String.format(MemberQuery.UPDATE.toString(),
@@ -141,12 +80,10 @@ public class MemberDAOImpl implements MemberDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
 	public void delete(MemberBean member) {
-
 		try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD).getConnection()
 					.createStatement().executeUpdate(
@@ -155,7 +92,6 @@ public class MemberDAOImpl implements MemberDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -187,7 +123,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public boolean selectOneList(MemberBean mm) {
+	public boolean checkId(MemberBean mm) {
 		boolean flag = true;
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
@@ -199,17 +135,14 @@ public class MemberDAOImpl implements MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-/*		if (flag == true) {
-			MemberServiceImpl.getInstance().createAge(mm);
-		}*/
 		return flag;
-
 	}
 	
 	public List<MemberBean> selectMemberBySearchWord(String word){
 		QueryTemplate q = new PstmtQuery();
 		List<MemberBean> list = new ArrayList<>();
 		HashMap<String, Object> map = new HashMap<>();
+		map.put("confirm", "selectMemberBySearchWord");
 		map.put("column", word.split("/")[0]);
 		map.put("value", word.split("/")[1]);
 		map.put("table", Domain.MEMBER);
@@ -221,10 +154,11 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public List<MemberBean> selectAllList5555(Map<?,?> param) {
+	public List<MemberBean> selectSome(Map<?,?> param) {
 		QueryTemplate q = new PstmtQuery();
 		List<MemberBean> list = new ArrayList<>();
 		HashMap<String, Object> map = new HashMap<>();
+		map.put("confirm","selectSome");
 		map.put("beginRow", param.get("beginRow"));
 		map.put("endRow", param.get("endRow"));
 		map.put("table", Domain.MEMBER);

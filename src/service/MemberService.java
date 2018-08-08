@@ -7,22 +7,13 @@ import domain.MemberBean;
 
 public interface MemberService {
 	public void createMemId(MemberBean mm);
-	public void createR();
-	public List<MemberBean> showAllList();
-	public List<MemberBean> showAllList55555(Map<?,?> param);
-
-	public List<MemberBean> showSomeList(String word);
-
-	public MemberBean showList(MemberBean member);
-	public boolean showOneList(MemberBean mm);
-
-	public int showCountList();
-
-	public void modifyMember(MemberBean member);
-
-	public void removeMember(MemberBean member);
+	public List<MemberBean> search(Map<?,?> param);
+	public MemberBean retrieve(String searchWord); //나중에 String id로 바꾸자 
+	public int count();
+	public void modify(Map<?,?> param);
+	public void remove(MemberBean member);
 	
 	public MemberBean login(MemberBean member);
-	
-/*	public String createAge(MemberBean mm);*/
+	public void createR();
+	public boolean checkId(MemberBean mm);
 }

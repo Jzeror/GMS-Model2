@@ -26,11 +26,8 @@ public class Commander {
 		case LOGIN:
 			cmd = new LoginCommand(request);
 			break;
-		case SEARCH:
-			cmd = new SearchCommand(request);
-			break;
 		case LIST:
-			cmd = new ListCommand(request);
+			cmd = new SearchCommand(request);
 			break;
 		case COUNT:
 			cmd = new CountCommand();

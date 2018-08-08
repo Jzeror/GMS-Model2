@@ -6,16 +6,15 @@ import java.util.Map;
 import domain.MemberBean;
 
 public interface MemberDAO {
-	public void insertMemId(MemberBean mm);
-	public List<MemberBean> selectAllList();
-	public List<MemberBean> selectAllList5555(Map<?,?> param);
-	//public List<MemberBean> selectSomeList(String member);
-	public MemberBean selectList(MemberBean member);
-	public int countAccount();
-	public void update(MemberBean member);
+	public void insert(MemberBean mm);
+	public List<MemberBean> selectSome(Map<?,?> param);
+	public MemberBean selectOne(String searchWord);
+	public int count();
+	public void update(Map<?,?> param);
 	public void delete(MemberBean member);
+	
 	public MemberBean login(MemberBean bean);
-	public boolean selectOneList(MemberBean mm);
+	public boolean checkId(MemberBean mm);
 	public List<MemberBean> selectMemberBySearchWord(String word);
 	
 }
