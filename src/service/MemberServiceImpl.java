@@ -170,7 +170,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		MemberDAOImpl.getInstance().insertMemId(mem);
 		}
-			
+			//
 	}
 	@Override
 	public List<MemberBean> showAllList55555(Map<?,?> param) {
