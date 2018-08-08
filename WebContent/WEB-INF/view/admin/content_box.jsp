@@ -34,17 +34,19 @@
 		</c:forEach>
 		<tr>
 			<td colspan="6">
+				전체 회원 수  : ${page.rowCount }
 				<ul class="pageBox">
-					<c:forEach begin="${beginPage}" end="${endPage}" step="1" varStatus="i">
+					<c:if test="${page.existPrev}">
+						<li id="${page.prevBlock}" class="pageNumber">◀PREV</li>
+					</c:if>
+					<c:forEach begin="${page.beginPage}" end="${page.endPage}" step="1" varStatus="i">
 						<li>
 						<a class="pageNumber" id="${i.index}" >${i.index}</a>
 						</li>
 						
 					</c:forEach>
-					<c:if test="${countTF}">
-						<li>
-						<a id="moveNext">다음▶</a>
-						</li>
+					<c:if test="${page.existNext}">
+						<li class="pageNumber" id="${page.nextBlock}">NEXT▶</li>
 					</c:if>
 				</ul>
 			</td>
@@ -55,9 +57,6 @@
 
   admin.main('${context}');
   
-	document.getElementById("moveNext").addEventListener('click',function(){
-		 location.href = '${context}/admin.do?action=list&page=main&endPage=${endPage}';
-	});
 	
 	
 </script>

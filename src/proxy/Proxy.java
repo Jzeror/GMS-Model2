@@ -1,5 +1,6 @@
 package proxy;
 
+
 public interface Proxy {
-	public void carryOut();
+	public void carryOut(Object o);
 }

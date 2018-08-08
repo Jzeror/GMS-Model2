@@ -95,7 +95,7 @@ var admin = (()=>{
 		}
 		},
 		main : x=>{
-			 document.getElementById('searchBtn').addEventListener('click',function(){
+			 document.getElementById('searchBtn').addEventListener('click',()=>{
 				 var j = document.getElementById('searchOption');
 				 var k = document.getElementById('searchWord');
 				 location.href=(j.value==="userId")?x+'/admin.do?action=retrieve&page=memberDetail&searchWord='
@@ -131,12 +131,22 @@ var admin = (()=>{
 			
 			
 			for(i of document.querySelectorAll(".pageNumber")){
-				 i.addEventListener('click',
-					function(){
-					 	 location.href = x +'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id')+'&endPage='+this.getAttribute('id');
+				service.addClass(
+						i,
+						'fontColorBlue cursor ');
+				 i.addEventListener('click',function(){
+					 	 location.href = x +'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
 					 }		 
 				 );
 			 } 
+			
+			/*document.getElementById('prevBlock').addEventListener('click',()=>{
+				alert("옴");
+				location.href = x +'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
+			});*/
+			
+		
+			
 		}
 	};})();
 
