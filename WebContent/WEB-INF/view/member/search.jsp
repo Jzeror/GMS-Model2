@@ -11,7 +11,6 @@
 		<input type="text" id="searchWord" name="searchWord" placeholder="검색어 입력"/>
 		<input type="button" id="searchBtn" value="검색" />
 	</div>
-	
 	<table id="contentBoxTab">
 		<tr id="contentBoxMeta">
 			<th>아이디</th>
@@ -29,7 +28,6 @@
 			<td>${mem.gender}</td>
 			<td>${mem.teamId}</td>
 			<td>${mem.roll}</td>
-		<%--<td>${mem.getRoll()}</td>--%>
 		</tr>
 		</c:forEach>
 		<tr>
@@ -54,9 +52,5 @@
 	</table>
 </div>
  <script>
-
   admin.main('${context}');
-  
-	
-	
 </script>

@@ -81,24 +81,32 @@ var mem=(()=> {
 		}
 	};
 })();
+var common= (()=>{
+	return{
+		main : x=>{
+			document.getElementById('goAdmin')
+			.addEventListener('click', ()=>{ 
+				var isAdmin = confirm('관리자니?');
+				if(isAdmin){ 
+					var password = prompt('관리자비번을 입력바랍니다');
+					if(password == 3){
+						router.move({ context : x, domain : 'admin', action : 'search', page : 'main'}); 
+					}else{alert('이상한짓 하지마렴 준아');} 
+				}else{
+					alert('솔직하구나'); 
+				}
+			});
+		}
+	};
+})();
 
 var admin = (()=>{
 	return{
-		check : x=>{ var isAdmin = confirm('관리자니?');
-		if(isAdmin){ 
-			var password = prompt('관리자비번을 입력바랍니다');
-			if(password == 3){
-				router.move({ context : x, domain : 'admin', action : 'list', page : 'main'}); 
-			}else{alert('이상한짓 하지마렴 준아');} 
-		}else{
-			alert('솔직하구나'); 
-		}
-		},
 		main : x=>{
 			 document.getElementById('searchBtn').addEventListener('click',()=>{
 				 var j = document.getElementById('searchOption');
 				 var k = document.getElementById('searchWord');
-				 location.href=(j.value==="userId")?x+'/admin.do?action=retrieve&page=memberDetail&searchWord='
+				 location.href=(j.value==="userId")?x+'/admin.do?action=retrieve&page=retrieve&searchWord='
 						 +k.value+'&searchOption='+j.value
 						 :
 							 x+'/admin.do?action=retrieve&page=main&searchOption='
@@ -116,49 +124,22 @@ var admin = (()=>{
 					document.getElementById('contentBoxTab'),
 					'width1000px marginAtuo '
 					);
-			
-
 			for(i of document.querySelectorAll('.username') ){
 				service.addClass(
 						i,
 						'fontColorBlue cursor ');
 				i.addEventListener('click', function(){
-					location.href=x+'/admin.do?searchOption=userId&action=retrieve&page=memberDetail&searchWord='+this.getAttribute('id');
+					location.href=x+'/member.do?searchOption=userId&action=retrieve&page=retrieve&searchWord='+this.getAttribute('id');
 				});
 			}
-			
-
-			
-			
 			for(i of document.querySelectorAll(".pageNumber")){
 				service.addClass(
 						i,
 						'fontColorBlue cursor ');
 				 i.addEventListener('click',function(){
-					 	 location.href = x +'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
+					 	 location.href = x +'/admin.do?action=search&page=main&pageNum='+this.getAttribute('id');
 					 }		 
 				 );
 			 } 
-			
-			/*document.getElementById('prevBlock').addEventListener('click',()=>{
-				alert("옴");
-				location.href = x +'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
-			});*/
-			
-		
-			
 		}
 	};})();
-
-
-
-
-
-
-
-
-
-
-
-
-

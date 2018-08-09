@@ -6,19 +6,16 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-		<관리자 페이지>
+		
 			<jsp:include page="../common/title_box.jsp" />
+			<jsp:include page="../common/login_box.jsp" />
 			<jsp:include page="../common/menu_box.jsp" />
-		</div>
-		<!-- header end -->
+		</div>		<!-- header end -->
 		<div id="content">
-			<jsp:include page="../member/search.jsp" />
-		</div>
-		<!-- content end -->
-		<jsp:include page="../common/footer.jsp"></jsp:include>
+			<jsp:include page="../common/content_box.jsp" />
+		</div>		<!-- content end -->
+		<jsp:include page="../common/footer.jsp" />
 	</div>
-<script >
-	admin.main('${context}');
-</script>
 </body>
 </html>
+

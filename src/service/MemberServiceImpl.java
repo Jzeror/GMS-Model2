@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	private MemberServiceImpl() {}
 	@Override
-	public void createMemId(MemberBean mm) {
+	public void add(MemberBean mm) {
 		MemberDAOImpl.getInstance().insert(mm);
 	}
 	@Override
@@ -51,7 +51,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public List<MemberBean> search(Map<?,?> param) {
-			
 		return MemberDAOImpl.getInstance().selectSome(param);
 	}
 	@Override

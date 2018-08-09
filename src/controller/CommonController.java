@@ -19,20 +19,20 @@ public class CommonController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int i = 0;
 		for(Resources r: Resources.values()) {
-				request.getSession()
+			request.getSession()
 				.setAttribute(r.toString().toLowerCase(),
 						(i==0)?
 						request.getContextPath() :
-							request.getContextPath()+
-							"/resources/"+r.toString().toLowerCase());
+						request.getContextPath()
+							+ "/resources/"+r.toString().toLowerCase());
 			i++;
 		}
-		
-		
-		/*	HttpSession session = request.getSession();
-		session.setAttribute(Domain.CONTEXT.toString(), request.getContextPath());*/
-		//setAttr가 된 session객체의 값을 request에 넣어주지 않았는데 어떻게?
-		request.getRequestDispatcher(Term.WEBPATH.toString()+Term.MAIN.toString())
-		.forward(request, response);
+		request.getRequestDispatcher(
+				Term.WEBPATH.toString()
+				+"/"+request.getServletPath()
+					.split("/")[1]
+					.split("\\.")[0]
+				+Term.MAIN.toString())
+			.forward(request, response);
 	}
 }

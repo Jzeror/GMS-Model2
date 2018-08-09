@@ -15,6 +15,5 @@ public interface MemberDAO {
 	
 	public MemberBean login(MemberBean bean);
 	public boolean checkId(MemberBean mm);
-	public List<MemberBean> selectMemberBySearchWord(String word);
 	
 }

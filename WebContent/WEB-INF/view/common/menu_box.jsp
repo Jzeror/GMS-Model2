@@ -14,10 +14,4 @@ document.getElementById('goHome')
 		action : 'move',
 		page : 'index'});
 });
-document.getElementById('goAdmin')
-.addEventListener('click', function(){ 
-	admin.check("${context}");
-});
-
-
 </script>

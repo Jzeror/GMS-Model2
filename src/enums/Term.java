@@ -8,7 +8,7 @@ public enum Term {
 		switch(this) {
 		case CONTEXT : r="context"; break;
 		case WEBPATH : 
-			r="/WEB-INF/view";
+			r="/WEB-INF/view/";
 			break;
 		case MAIN : 
 			r="/main.jsp";

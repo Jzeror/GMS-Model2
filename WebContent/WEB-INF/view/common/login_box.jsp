@@ -13,7 +13,7 @@ document.getElementById('goUserLoginForm')
 		 context :'${context}',
 		 domain : 'member',
 		 action : 'move',
-		 page : 'user_login_form'});
+		 page : 'login'});
 });
 
 document.getElementById('goJoinForm')
@@ -21,7 +21,7 @@ document.getElementById('goJoinForm')
 	var x = {context :'${context}', 
 			domain: 'member',
 			action: 'move',
-			page: 'join_form'};
+			page: 'add'};
 	router.move(x);
 });
 </script>

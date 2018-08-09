@@ -17,7 +17,7 @@ import command.CountCommand;
 import command.SearchCommand;
 import command.RetrieveCommand;
 import command.SearchCommand;
-import command.Sentry;
+import command.Receiver;
 import domain.MemberBean;
 import enums.Action;
 import service.MemberServiceImpl;
@@ -28,30 +28,20 @@ public class MemberController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Sentry.init(request);		
-		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
-		case MOVE:
-			if (request.getParameter("page").equals("index")) {
-				Carrier.redirect(request, response, "");
-			} else {
-				Carrier.forward(request, response);
-			}
-			break;
-		case JOIN:
+		Receiver.init(request);		
+		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
+		case ADD:
 			Carrier.forward(request, response);
 			break;
-		case LIST:case SEARCH:case RETRIEVE:
-			
+		case SEARCH:case RETRIEVE:
 			Carrier.forward(request, response);
 			break;
-		case COUNT: Carrier.forward(request, response);;
-			break;
-		case UPDATE:
-			Sentry.cmd.setPage("mypage");
-			Sentry.cmd.execute();
+		case MODIFY:
+			Receiver.cmd.setPage("mypage");
+			Receiver.cmd.execute();
 			Carrier.forward(request, response);
 			break;
-		case DELETE:
+		case REMOVE:
 			Carrier.redirect(request, response, "");
 			break;
 		case LOGIN:
@@ -60,6 +50,13 @@ public class MemberController extends HttpServlet {
 				Carrier.forward(request, response);
 			} else {
 				Carrier.redirect(request, response, "");
+			}
+			break;
+		case MOVE:
+			if (request.getParameter("page").equals("index")) {
+				Carrier.redirect(request, response, "");
+			} else {
+				Carrier.forward(request, response);
 			}
 			break;
 		default:

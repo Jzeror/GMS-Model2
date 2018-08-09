@@ -17,8 +17,6 @@
 		<!-- content end -->
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
-<script >
-	admin.main('${context}');
-</script>
+
 </body>
 </html>

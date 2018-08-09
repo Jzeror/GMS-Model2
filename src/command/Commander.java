@@ -8,29 +8,26 @@ public class Commander {
 	public static Command order(HttpServletRequest request) {
 		Command cmd = null;
 		switch (Action.valueOf(request.getParameter("action").toUpperCase())) {
-		case MOVE:
-			cmd = new MoveCommand(request);
+		case ADD:
+			cmd = new AddCommand(request);
 			break;
-		case JOIN:
-			cmd = new CreateCommand(request);
+		case MODIFY:
+			cmd = new ModifyCommand(request);
 			break;
-		case UPDATE:
-			cmd = new UpdateCommand(request);
-			break;
-		case DELETE:
+		case REMOVE:
 			cmd = new DeleteCommand(request);
 			break;
 		case RETRIEVE:
 			cmd = new RetrieveCommand(request);
 			break;
+		case SEARCH:
+			cmd = new SearchCommand(request);
+			break;
 		case LOGIN:
 			cmd = new LoginCommand(request);
 			break;
-		case LIST:
-			cmd = new SearchCommand(request);
-			break;
-		case COUNT:
-			cmd = new CountCommand();
+		case MOVE:
+			cmd = new MoveCommand(request);
 			break;
 		}
 		return cmd;

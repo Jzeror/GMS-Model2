@@ -9,8 +9,8 @@ import domain.MemberBean;
 import enums.Domain;
 import service.MemberServiceImpl;
 
-public class UpdateCommand extends Command{
-	public UpdateCommand(HttpServletRequest request) {
+public class ModifyCommand extends Command{
+	public ModifyCommand(HttpServletRequest request) {
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1,request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
@@ -27,7 +27,7 @@ public class UpdateCommand extends Command{
 		param.put("memID", request.getParameter("memId"));
 		
 		MemberServiceImpl.getInstance().modify(param);
-			setPage("mypage");
-			super.execute();
+		setPage("mypage");
+		super.execute();
 		}
 }

@@ -1,32 +1,33 @@
 package template;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import domain.MemberBean;
-import enums.Domain;
 import enums.MemberQuery;
 import factory.DatabaseFactory;
-import lombok.Data;
-@Data
+
 public class PstmtQuery extends QueryTemplate {
 	@Override
 	void initialize() {
-		
 		switch ((String)map.get("confirm")) {
 		case "selectSome":
 			map.put("sql",
-					String.format(MemberQuery.SELECT_SOME.toString(),map.get("table")));
-			break;
-		case "selectMemberBySearchWord":
-			map.put("sql",
-					String.format(MemberQuery.SELECT_MEMBER_BY_SEARCHWORD.toString(), map.get("table"), map.get("column")));
+					String.format(MemberQuery.SEARCH.toString(),map.get("table")));
 			break;
 		case "insert":
-			map.put("sql", MemberQuery.INSERT_MEMBER.toString() );
+			map.put("sql", MemberQuery.INSERT.toString() );
 			break;
 		case "selectOne":
-			map.put("sql",MemberQuery.SERCH_ID.toString() );
+			map.put("sql",String.format(MemberQuery.RETRIEVE.toString(),map.get("table")));
+			break;
+		case "count":
+			map.put("sql",MemberQuery.COUNT.toString() );
+			break;
+		case "delete":
+			map.put("sql",MemberQuery.COUNT.toString() );
+			break;
+		case "login":
+			map.put("sql",MemberQuery.COUNT.toString() );
 			break;
 		
 		}
@@ -43,9 +44,6 @@ public class PstmtQuery extends QueryTemplate {
 			case "selectSome":
 				pstmt.setString(1,String.valueOf(map.get("beginRow".toString())));
 				pstmt.setString(2,String.valueOf(map.get("endRow".toString())));
-				break;
-			case "selectMemberBySearchWord":
-				pstmt.setString(1, "%" + map.get("value".toString()) + "%");
 				break;
 			case "insert":
 				//MEM_ID, NAME, PASSWORD, SSN, AGE, GENDER, ROLL, TEAM_ID
@@ -74,6 +72,8 @@ public class PstmtQuery extends QueryTemplate {
 		try {
 			ResultSet rs = pstmt.executeQuery();
 			MemberBean mem = null;
+			System.out.println(map.get("confirm").toString());
+			if(!map.get("confirm").toString().equals("count")) {
 				while(rs.next()) {
 					mem = new MemberBean();
 					mem.setMemId(rs.getString("MEM_ID"));
@@ -85,6 +85,11 @@ public class PstmtQuery extends QueryTemplate {
 					mem.setSsn(rs.getString("SSN"));
 					mem.setGender(rs.getString("GENDER"));
 					list.add(mem); //list는 조상에 있는 list
+				}
+				}else {
+					while(rs.next()) {
+					list.add(rs.getInt("count"));}
+					
 				}
 		} catch (Exception e) {
 			e.printStackTrace();

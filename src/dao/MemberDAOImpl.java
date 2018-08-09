@@ -15,6 +15,7 @@ import factory.DatabaseFactory;
 import pool.DBConstant;
 import template.PstmtQuery;
 import template.QueryTemplate;
+import template.UpdateQuery;
 
 public class MemberDAOImpl implements MemberDAO {
 	private static MemberDAO instance = new MemberDAOImpl();
@@ -25,7 +26,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	private MemberDAOImpl() {
 	}
-
 	@Override
 	public void insert(MemberBean mm) {
 		QueryTemplate q =new PstmtQuery();
@@ -42,48 +42,38 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("teamId", mm.getTeamId());
 		q.play(map);
 	}
-
 	@Override
 	public MemberBean selectOne(String searchWord) {
 		QueryTemplate q = new PstmtQuery();
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("confirm", "selectOne");
+		map.put("table", Domain.MEMBER);
 		map.put("searchWord", searchWord);
 		q.play(map);
 		return (MemberBean)q.getList().get(0);
 	}
-
 	@Override
 	public int count() {
-		int count = 0;
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
-					.getConnection().createStatement().executeQuery(MemberQuery.COUNT_MEMBER.toString());
-			while (rs.next()) {
-				count = rs.getInt("count");
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return count;
+		QueryTemplate q = new PstmtQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("confirm", "count");
+		q.play(map);
+		return (int)q.getList().get(0);
 	}
-
 	@Override
 	public void update(Map<?,?> param) {
-		MemberBean member =null;;
-		try {
-			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD).getConnection()
-					.createStatement().executeUpdate(String.format(MemberQuery.UPDATE.toString(),
-							member.getPassword(), member.getTeamId(), member.getRoll() , member.getMemId()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+		QueryTemplate q = new UpdateQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("table", Domain.MEMBER);			//얘네는 나중에 
+		map.put("searchTable", Domain.MEMBER);		//동적으로 만들자.
+		map.put("column", "MEM_ID");		
+		map.put("updateWord", param.get("updateWord"));
+		q.play(map);
 
+	}
 	@Override
 	public void delete(MemberBean member) {
+		
 		try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD).getConnection()
 					.createStatement().executeUpdate(
@@ -93,7 +83,6 @@ public class MemberDAOImpl implements MemberDAO {
 			e.printStackTrace();
 		}
 	}
-
 	@Override
 	public MemberBean login(MemberBean bean) {
 		MemberBean mem = null;
@@ -138,20 +127,6 @@ public class MemberDAOImpl implements MemberDAO {
 		return flag;
 	}
 	
-	public List<MemberBean> selectMemberBySearchWord(String word){
-		QueryTemplate q = new PstmtQuery();
-		List<MemberBean> list = new ArrayList<>();
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("confirm", "selectMemberBySearchWord");
-		map.put("column", word.split("/")[0]);
-		map.put("value", word.split("/")[1]);
-		map.put("table", Domain.MEMBER);
-		q.play(map);
-		for(Object s: q.getList()) {
-			list.add((MemberBean)s);
-		}
-		return list;
-	}
 
 	@Override
 	public List<MemberBean> selectSome(Map<?,?> param) {
