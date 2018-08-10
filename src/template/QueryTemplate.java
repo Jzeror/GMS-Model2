@@ -55,7 +55,7 @@ public abstract class QueryTemplate {
 	}
 	public void pstmtInit() {
 		try {
-			this.pstmt = DatabaseFactory.createDatabase2(map).getConnection().prepareStatement((String) map.get("sql"));
+			this.pstmt = DatabaseFactory.createDatabase2(map).getConnection().prepareStatement((String)map.get("sql"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -14,10 +14,10 @@ public enum MemberQuery {
 		String query = "";
 		switch (this) {
 		case LOGIN:
-			query = " SELECT "+ColumnFinder.find(Domain.MEMBER) + " FROM MEMBER " + " WHERE MEM_ID LIKE  '%s'  AND  PASSWORD  LIKE  '%s' ";
+			query = " SELECT "+ColumnFinder.find(Domain.MEMBER) + " FROM MEMBER " + " WHERE MEM_ID LIKE  ?  AND  PASSWORD  LIKE  ? ";
 			break;
 		case INSERT:
-			query = " INSERT INTO MEMBER (MEM_ID, NAME, PASSWORD, SSN, AGE, GENDER, ROLL, TEAM_ID) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? ) ";
+			query = " INSERT INTO MEMBER (MEM_ID, NAME, PASSWORD, SSN, AGE, GENDER, ROLL, TEAM_ID) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
 			break;
 		case CONFIRM_ID:
 			query = " SELECT MEM_ID  " + " FROM MEMBER " + " WHERE MEM_ID LIKE  '%s'   ";
@@ -29,7 +29,7 @@ public enum MemberQuery {
 			query = "UPDATE MEMBER SET %s = ?  WHERE %s LIKE ? ";
 			break;
 		case DELETE:
-			query = "DELETE FROM MEMBER WHERE PASSWORD LIKE ? AND MEM_ID LIKE ? ";
+			query = "DELETE FROM MEMBER WHERE MEM_ID LIKE ? AND PASSWORD LIKE ? ";
 			break;
 		case LIST:
 			query = " SELECT T.* FROM (SELECT ROWNUM SEQ, "+ ColumnFinder.find(Domain.MEMBER) + " FROM MEMBER ORDER BY SEQ DESC) T	WHERE T.SEQ BETWEEN ? AND ? ";

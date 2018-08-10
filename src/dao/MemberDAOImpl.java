@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +20,6 @@ public class MemberDAOImpl implements MemberDAO {
 	public static MemberDAO getInstance() {
 		return instance;
 	}
-
 	private MemberDAOImpl() {
 	}
 	private QueryTemplate q;
@@ -29,6 +27,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void insert(MemberBean mm) {
 		q =new AddQuery();
 		HashMap<String, Object> map = new HashMap<>();
+		map.put("member", mm);
 		map.put("table", Domain.MEMBER);
 		q.play(map);
 	}
@@ -44,7 +43,6 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int count() {
 		q= new CountQuery();
-		HashMap<String, Object> map = new HashMap<>();
 		q.play();
 		return (int)q.getNumber();
 	}
@@ -57,48 +55,24 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("column", "MEM_ID");		
 		map.put("updateWord", param.get("updateWord"));
 		q.play(map);
-
 	}
 	@Override
 	public void delete(MemberBean member) {
-		
-		try {
-			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD).getConnection()
-					.createStatement().executeUpdate(
-							String.format(MemberQuery.DELETE.toString(), member.getPassword(), member.getMemId()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		q =new RemoveQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("member", member);
+		map.put("table", Domain.MEMBER);
+		q.play(map);
 	}
 	@Override
 	public MemberBean login(MemberBean bean) {
-		MemberBean mem = null;
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
-					.getConnection().createStatement()
-					.executeQuery(String.format(MemberQuery.LOGIN.toString(), bean.getMemId(), bean.getPassword()));
-			if (rs.next()) {
-				mem = new MemberBean();
-				mem.setMemId(rs.getString("MEM_ID"));
-				mem.setAge(rs.getString("AGE"));
-				mem.setName(rs.getString("NAME"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setTeamId(rs.getString("TEAM_ID"));
-				mem.setGender(rs.getString("GENDER"));
-			} else {
-				mem = new MemberBean();
-				mem.setAge("999");
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return mem;
+		q = new LoginQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("userId", bean.getMemId());
+		map.put("pass", bean.getPassword());
+		q.play(map);
+		return (MemberBean)q.getO();
 	}
-
 	@Override
 	public List<MemberBean> selectSome(Map<?,?> param) {
 		List<MemberBean> list = new ArrayList<>();

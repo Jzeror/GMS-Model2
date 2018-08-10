@@ -81,6 +81,62 @@ var mem=(()=> {
 		}
 	};
 })();
+
+var member= (()=>{
+	return{
+		main : x=>{
+			document.getElementById('loginFormBtn').addEventListener(
+					'click',function() {
+						var form = document.getElementById("user-login-form-id");
+						var e = service.nullChecker([
+							form.name.value,
+							form.pass.value ]);
+					if (e.checker) {
+						var node = document.createElement("input");
+						node.innerHTML= '<input type="hidden" name="action" value="login" />';
+						form.appendChild(node);
+						var node2 = document.createElement("input");
+						node2.innerHTML= '<input type="hidden" name="page" value="retrieve" />';
+						form.appendChild(node2);
+						form.action = x+"/member.do";
+						form.method = "post";
+						form.submit();
+					} else {
+						alert(x.text);
+					}
+				});
+			document.getElementById('join_form_btn')
+				.addEventListener('click',()=> {
+					var form = document.getElementById("join_form");
+					var e = service.nullChecker([ form.memid.value,
+						form.password.value, form.name.value,
+						form.ssn.value ]);
+					if (e.checker) {
+						mem.join(form.ssn.value);
+						var j = [ 
+							{name : 'action',value : 'add'},
+							{name : 'gender',value : mem.getGender()}, 
+							{name : 'age',value : mem.getAge()},
+							{name : 'page', value : 'seac2h'}
+						];
+						for ( var i in j) {
+						var node = document.createElement('input');
+							node.setAttribute('type', 'hidden');
+							node.setAttribute('name', j[i].name);
+							node.setAttribute('value', j[i].value);
+							form.appendChild(node);
+						}
+						form.action = x+"/member.do";
+						form.method = "post";
+						form.submit();
+					} else {
+						alert(x.text);
+					}
+			});
+		}
+	};
+})();
+
 var common= (()=>{
 	return{
 		main : x=>{
@@ -96,6 +152,9 @@ var common= (()=>{
 					alert('솔직하구나'); 
 				}
 			});
+			
+			
+
 		}
 	};
 })();
@@ -140,5 +199,6 @@ var admin = (()=>{
 					 }		 
 				 );
 			 } 
+
 		}
 	};})();

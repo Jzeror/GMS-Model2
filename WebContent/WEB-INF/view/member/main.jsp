@@ -14,6 +14,9 @@
 		<div id="content">
 		이동페이지 : ${pagename}
 			<c:choose>
+				<c:when test="${pagename eq 'main'}">
+					<jsp:include page="../common/content_box.jsp"/>
+				</c:when>
 				<c:when test="${pagename eq 'add'}">
 					<jsp:include page="add.jsp"/>
 				</c:when>
@@ -26,7 +29,12 @@
 				<c:when test="${pagename eq 'retrieve'}">
 					<jsp:include page="retrieve.jsp"/>
 				</c:when>
-				
+				<c:when test="${pagename eq 'remove'}">
+					<jsp:include page="remove.jsp"/>
+				</c:when>
+				<c:when test="${pagename eq 'modify'}">
+					<jsp:include page="modify.jsp"/>
+				</c:when>
 				<c:otherwise>
 					<jsp:include page="../../../test.jsp"/>
 				</c:otherwise>

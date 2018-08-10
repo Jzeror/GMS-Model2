@@ -15,7 +15,7 @@ public class Commander {
 			cmd = new ModifyCommand(request);
 			break;
 		case REMOVE:
-			cmd = new DeleteCommand(request);
+			cmd = new RemoveCommand(request);
 			break;
 		case RETRIEVE:
 			cmd = new RetrieveCommand(request);

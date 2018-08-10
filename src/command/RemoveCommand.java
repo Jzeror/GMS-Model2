@@ -6,8 +6,8 @@ import domain.MemberBean;
 import enums.Domain;
 import service.MemberServiceImpl;
 
-public class DeleteCommand extends Command {
-	public DeleteCommand(HttpServletRequest request) {
+public class RemoveCommand extends Command {
+	public RemoveCommand(HttpServletRequest request) {
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
