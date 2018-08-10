@@ -19,22 +19,41 @@ public class SearchCommand extends Command{
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
 		execute();
 	} 
-	
 	@Override
 	public void execute() {
 			String pageNumber = request.getParameter("pageNum");
-			Map<String,Object> param = new HashMap<>();
+			Map<String,Object> param = new HashMap<>(); 
 			PageProxy pxy = new PageProxy();
 			pxy.carryOut((pageNumber==null)? 1 : Integer.parseInt(pageNumber));
 			Pagination page = pxy.getPagination();
-			param.put("beginRow", String.valueOf(page.getBeginRow()));
-			param.put("endRow", String.valueOf(page.getEndRow())) ;
+			if(request.getParameter("searchOption")!=null) {
+				String[] arr1 = {"beginRow","endRow","searchOption","searchWord"};
+				String[] arr2 = {
+						
+						String.valueOf(page.getBeginRow()),
+						String.valueOf(page.getEndRow()),
+						request.getParameter("searchOption"),
+						request.getParameter("searchWord")
+				};
+				for(int i=0 ; i<arr1.length ; i++) {
+					param.put(arr1[i], arr2[i]);
+				}
+			}else {
+				String[] arr1 = {"beginRow","endRow"};
+				String[] arr2 = {
+						String.valueOf(page.getBeginRow()),
+						String.valueOf(page.getEndRow())
+			};
+				for(int i=0 ; i<arr1.length ; i++) {
+					param.put(arr1[i], arr2[i]);
+				}
+				}
+			request.setAttribute("pagename", request.getParameter("page"));
 			request.setAttribute("page", page);
 			request.setAttribute("list", MemberServiceImpl.getInstance().search(param));
-		super.execute();
+			super.execute();
 	}
 }
 

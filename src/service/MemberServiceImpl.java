@@ -24,10 +24,6 @@ public class MemberServiceImpl implements MemberService{
 		MemberDAOImpl.getInstance().insert(mm);
 	}
 	@Override
-	public boolean checkId(MemberBean mm) {
-		return MemberDAOImpl.getInstance().checkId(mm);	
-	}
-	@Override
 	public int count() {
 		return MemberDAOImpl.getInstance().count();
 	}

@@ -6,6 +6,6 @@
 	<title>Document</title>
 </head>
 <body>
-	이게 떴다면 맞음.
+	이게 떴다면 망함.
 </body>
 </html>

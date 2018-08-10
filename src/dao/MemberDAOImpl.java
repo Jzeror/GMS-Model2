@@ -13,9 +13,7 @@ import enums.DBConstant2;
 import enums.Domain;
 import factory.DatabaseFactory;
 import pool.DBConstant;
-import template.PstmtQuery;
-import template.QueryTemplate;
-import template.UpdateQuery;
+import template.*;
 
 public class MemberDAOImpl implements MemberDAO {
 	private static MemberDAO instance = new MemberDAOImpl();
@@ -26,43 +24,33 @@ public class MemberDAOImpl implements MemberDAO {
 
 	private MemberDAOImpl() {
 	}
+	private QueryTemplate q;
 	@Override
 	public void insert(MemberBean mm) {
-		QueryTemplate q =new PstmtQuery();
+		q =new AddQuery();
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("confirm","insert");
 		map.put("table", Domain.MEMBER);
-		map.put("memId", mm.getMemId());
-		map.put("name", mm.getName());
-		map.put("age", mm.getAge());
-		map.put("gender", mm.getGender());
-		map.put("password", mm.getPassword());
-		map.put("ssn", mm.getSsn());
-		map.put("roll", mm.getRoll());
-		map.put("teamId", mm.getTeamId());
 		q.play(map);
 	}
 	@Override
 	public MemberBean selectOne(String searchWord) {
-		QueryTemplate q = new PstmtQuery();
+		q = new RetrieveQuery();
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("confirm", "selectOne");
 		map.put("table", Domain.MEMBER);
 		map.put("searchWord", searchWord);
 		q.play(map);
-		return (MemberBean)q.getList().get(0);
+		return (MemberBean)q.getO();
 	}
 	@Override
 	public int count() {
-		QueryTemplate q = new PstmtQuery();
+		q= new CountQuery();
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("confirm", "count");
-		q.play(map);
-		return (int)q.getList().get(0);
+		q.play();
+		return (int)q.getNumber();
 	}
 	@Override
 	public void update(Map<?,?> param) {
-		QueryTemplate q = new UpdateQuery();
+		q= new ModifyQuery();
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("table", Domain.MEMBER);			//얘네는 나중에 
 		map.put("searchTable", Domain.MEMBER);		//동적으로 만들자.
@@ -112,32 +100,10 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public boolean checkId(MemberBean mm) {
-		boolean flag = true;
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant2.UERNAME.toString(), DBConstant.PASSWORD)
-					.getConnection().createStatement()
-					.executeQuery(String.format(MemberQuery.CONFIRM_ID.toString(), mm.getMemId()));
-			while (rs.next()) {
-				flag = false;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return flag;
-	}
-	
-
-	@Override
 	public List<MemberBean> selectSome(Map<?,?> param) {
-		QueryTemplate q = new PstmtQuery();
 		List<MemberBean> list = new ArrayList<>();
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("confirm","selectSome");
-		map.put("beginRow", param.get("beginRow"));
-		map.put("endRow", param.get("endRow"));
-		map.put("table", Domain.MEMBER);
-		q.play(map);
+		q= new SearchQuery();
+		q.play(param);
 		for(Object s: q.getList()) {
 			list.add((MemberBean)s);
 		}

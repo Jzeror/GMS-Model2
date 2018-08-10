@@ -106,11 +106,10 @@ var admin = (()=>{
 			 document.getElementById('searchBtn').addEventListener('click',()=>{
 				 var j = document.getElementById('searchOption');
 				 var k = document.getElementById('searchWord');
-				 location.href=(j.value==="userId")?x+'/admin.do?action=retrieve&page=retrieve&searchWord='
+				 location.href=(j.value==="userId")?x+'/member.do?action=retrieve&page=retrieve&searchWord='
 						 +k.value+'&searchOption='+j.value
-						 :
-							 x+'/admin.do?action=retrieve&page=main&searchOption='
-									 +j.value+'&searchWord='+k.value; 
+						 : x+'/member.do?action=search&page=search&searchOption='
+							 +j.value+'&searchWord='+k.value; 
 			});
 			service.addClass(
 					document.getElementById('content_box'),

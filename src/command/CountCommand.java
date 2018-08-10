@@ -10,7 +10,6 @@ public class CountCommand extends Command {
 		setRequest(request);
 		setDomain("admin");
 		setAction("count");
-		setPage("main");
 		execute();
 	}
 	@Override

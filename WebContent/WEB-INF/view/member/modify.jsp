@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<jsp:include page="../common/header.jsp" />
-<body>
-	<div id="wrapper">
+
 		<div id="header">
 			<jsp:include page="../common/title_box.jsp" />
 			<jsp:include page="../common/login_box.jsp" />
@@ -45,10 +41,6 @@
  								value="D" /> 왕거북이
  							<input type = "radio" id="teamid_4" name="teamid"
  								value="C" /> 코딩짱</td>
-
-
-
-
 							<td>성별</td>
 							<td colspan="2">${user.gender}</td>
 						</tr>
@@ -67,10 +59,10 @@
 							<td colspan="2">${user.ssn}</td>
 						</tr>
 					</table>
-					<input type="hidden" name="memId" value=${user.memId } /> <input
-						type="hidden" name="action" value="update" /> <input
-						type="hidden" name="page" value="mypage" /> <input type="button"
-						id="updateConfirmBtn" value="수정확인" />
+					<input type="hidden" name="memId" value=${user.memId } /> 
+					<input type="hidden" name="action" value="update" /> 
+					<input type="hidden" name="page" value="mypage" /> 
+					<input type="button" id="updateConfirmBtn" value="수정확인" />
 				</form>
 		<form id="moveMain">
 
@@ -82,7 +74,7 @@
 		<div id="footer">
 		<jsp:include page="../common/footer.jsp" />
 		</div>
-	</div>
+
 	<script>
 document.getElementById("mainMoveBtn").addEventListener('click', function(){
 	router.move({
@@ -92,7 +84,6 @@ document.getElementById("mainMoveBtn").addEventListener('click', function(){
 		page : "index"
 	});
 });
-
 	document.getElementById('mypageMoveBtn').addEventListener('click', function() {
 		router.move({
 			context : '${context}',
@@ -101,8 +92,6 @@ document.getElementById("mainMoveBtn").addEventListener('click', function(){
 			page : 'mypage'
 		});
 	});
-
-	
 	var roll = document.getElementById('roll');
 	for(var i=0 ; i< roll.options.length;i++){
 		if(roll.options[i].value==='${user.roll}'){
@@ -127,7 +116,6 @@ document.getElementById("mainMoveBtn").addEventListener('click', function(){
 					mem.setPassword(form.pass.value)
 				}
 				form.pass.value = mem.getPassword();
-				alert(form.pass.value);
 				form.submit();
 			});
 </script>

@@ -22,5 +22,6 @@ public class DeleteCommand extends Command {
 		MemberServiceImpl.getInstance().remove(mem);
 		request.getSession().invalidate();
 		super.execute();
+		request.setAttribute("pagename", request.getParameter("page"));
 	}
 }

@@ -37,28 +37,23 @@ public class MemberController extends HttpServlet {
 			Carrier.forward(request, response);
 			break;
 		case MODIFY:
-			Receiver.cmd.setPage("mypage");
 			Receiver.cmd.execute();
 			Carrier.forward(request, response);
 			break;
 		case REMOVE:
-			Carrier.redirect(request, response, "");
+			//Carrier.redirect(request, response, "");
 			break;
 		case LOGIN:
 			if (request.getAttribute("match").equals("TRUE")) {
 				
 				Carrier.forward(request, response);
 			} else {
-				Carrier.redirect(request, response, "");
-			}
-			break;
-		case MOVE:
-			if (request.getParameter("page").equals("index")) {
-				Carrier.redirect(request, response, "");
-			} else {
 				Carrier.forward(request, response);
 			}
 			break;
+		case MOVE:
+				Carrier.forward(request, response);
+				break;
 		default:
 			Carrier.redirect(request, response, "");
 			break;

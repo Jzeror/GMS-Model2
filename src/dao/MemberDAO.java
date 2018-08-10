@@ -14,6 +14,5 @@ public interface MemberDAO {
 	public void delete(MemberBean member);
 	
 	public MemberBean login(MemberBean bean);
-	public boolean checkId(MemberBean mm);
 	
 }

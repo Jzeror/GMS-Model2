@@ -14,7 +14,6 @@ public class ModifyCommand extends Command{
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1,request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
 		execute();
 	}
 	@Override
@@ -27,7 +26,7 @@ public class ModifyCommand extends Command{
 		param.put("memID", request.getParameter("memId"));
 		
 		MemberServiceImpl.getInstance().modify(param);
-		setPage("mypage");
 		super.execute();
+		request.setAttribute("pagename", request.getParameter("page"));
 		}
 }

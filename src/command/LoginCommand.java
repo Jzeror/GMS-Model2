@@ -11,7 +11,6 @@ public class LoginCommand extends Command {
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage("mypage");
 		execute();
 	}
 	@Override
@@ -20,10 +19,10 @@ public class LoginCommand extends Command {
 		MemberBean mem = new MemberBean();
 		mem.setMemId(request.getParameter("memId"));
 		mem.setPassword(request.getParameter("pass"));
-		mem=MemberServiceImpl.getInstance().login(mem);
-		if (MemberServiceImpl.getInstance().checkId(mem) == false && !mem.getAge().equals("999")) {
+		request.setAttribute("pagename", request.getParameter("page"));
+		if (!MemberServiceImpl.getInstance().login(mem).getAge().equals("999")) {
 			request.setAttribute("match", "TRUE");
-			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().login(mem));
+			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().login(mem));			
 		} else {
 			request.setAttribute("match", "FALSE");
 		}

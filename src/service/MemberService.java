@@ -15,5 +15,4 @@ public interface MemberService {
 	
 	public MemberBean login(MemberBean member);
 	public void createR();
-	public boolean checkId(MemberBean mm);
 }

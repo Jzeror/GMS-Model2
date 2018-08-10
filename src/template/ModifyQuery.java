@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import enums.MemberQuery;
 import factory.DatabaseFactory;
 
-public class UpdateQuery extends QueryTemplate {
+public class ModifyQuery extends QueryTemplate {
 
 	@Override
 	void initialize() {
@@ -21,7 +21,6 @@ public class UpdateQuery extends QueryTemplate {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
@@ -31,7 +30,5 @@ public class UpdateQuery extends QueryTemplate {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-				
 	}
-
 }

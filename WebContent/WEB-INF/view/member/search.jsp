@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../common/header.jsp" />
 <div id="content_box">
 	<div id="contentBoxSearch">
 		<select name="searchOption" id="searchOption">
@@ -32,7 +33,7 @@
 		</c:forEach>
 		<tr>
 			<td colspan="6">
-				전체 회원 수  : ${page.rowCount }
+				전체 회원 수  : ${page.rowCount}
 				<ul class="pageBox">
 					<c:if test="${page.existPrev}">
 						<li id="${page.prevBlock}" class="pageNumber">◀PREV</li>
@@ -41,7 +42,6 @@
 						<li>
 						<a class="pageNumber" id="${i.index}" >${i.index}</a>
 						</li>
-						
 					</c:forEach>
 					<c:if test="${page.existNext}">
 						<li class="pageNumber" id="${page.nextBlock}">NEXT▶</li>

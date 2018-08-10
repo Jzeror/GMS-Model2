@@ -4,7 +4,6 @@ package command;
 import javax.servlet.http.HttpServletRequest;
 
 import domain.MemberBean;
-import enums.Domain;
 import service.MemberServiceImpl;
 
 public class AddCommand extends Command {
@@ -12,7 +11,6 @@ public class AddCommand extends Command {
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage("join_result");
 		execute();
 	}
 
@@ -28,14 +26,8 @@ public class AddCommand extends Command {
 		mem.setAge(request.getParameter("age"));
 		mem.setRoll(request.getParameter("roll"));
 		mem.setTeamId(request.getParameter("teamid"));
-		
-		if(MemberServiceImpl.getInstance().checkId(mem)==true) {
-			MemberServiceImpl.getInstance().add(mem);
-			request.setAttribute("createResult", "회원가입");
-		}else {
-			request.setAttribute("createResult", "아이디중복");
-		}
-		
+		MemberServiceImpl.getInstance().add(mem);
+		request.setAttribute("pagename", request.getParameter("page"));
 	
 	}
 }
