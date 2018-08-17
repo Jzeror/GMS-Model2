@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<body>
+<div id="content-box">
 <table id="admin-tab-layout" class="margin-auto">
 	<tr class="height-140">
-		<td colspan="2"><img src="resources/img/home/head.png"
-			style="height: 135px; width: 100%" alt="" /></td>
+		<td colspan="2"></td>
 	</tr>
 	<tr style="height: 500px; width: 100%">
 		<td id="admin-tab-layout-td" align="center">
 			<table>
 			<tr>
-				<td colspan="3" rowspan="3"><img
-					src="${img}/mypage/${user.memId}.jpg" width="130" height="200"
-					alt="" /></td>
+				<td colspan="3" rowspan="3">
+				 <img src="${img}/upload/${imgp}" width="130" height="200"	alt="" />
+				</td>
 				<td>ID</td>
 				<td colspan="2">${user.memId}</td>
 			</tr>
@@ -26,7 +25,7 @@
 			</tr>
 			<tr>
 				<td colspan="3">
-					<input type="button" id="mypageMove"value="업데이트하러가기">
+					<input type="button" id="moveToModify"value="업데이트하러가기">
 					<input type="button" id="mypageMoveToDelete" value="삭제하러가기">
 				</td>
 				<td>나이</td>
@@ -50,56 +49,10 @@
 		<td align="center">
 			<div id="admin-login-layout">
 				<h2>마이페이지</h2>
-			</div> 
-			
-			<script>
-				
-			</script>
 		</td>
 	</tr>
 	<tr style="height: 140px; width: 100%">
 		<td class="width-80pt" colspan="2"></td>
 	</tr>
 </table>
-<script>
-document
-.getElementById('loginFormBtn')
-.addEventListener(
-	'click',
-	function() {
-		var x = service
-				.nullChecker([
-						document.user_login_form_name.name.value,
-						document.user_login_form_name.pass.value ]);
-		if (x.checker) {
-			var form = document
-					.getElementById("user-login-form-id");
-			form.action = "${context}/member.do";
-			form.method = "post";
-			form.submit();
-		} else {
-			alert(x.text);
-
-		}
-	});
-	document.getElementById("mypageMoveToDelete").addEventListener('click',
-			function() {
-				router.move({
-					context : '${context}',
-					domain : 'member',
-					action : 'move',
-					page : 'remove'
-				});
-			});
-
-	document.getElementById('mypageMove').addEventListener('click',
-			function() {
-				router.move({
-					context : '${context}',
-					domain : 'member',
-					action : 'move',
-					page : 'modify'
-				});
-			});
-</script>
-</body>
+</div>

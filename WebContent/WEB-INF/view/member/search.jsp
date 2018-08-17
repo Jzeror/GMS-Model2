@@ -9,6 +9,8 @@
  				<option value="team_id">팀 id</option>
  		</select>
 		<input type="text" id="searchWord" name="searchWord" placeholder="검색어 입력"/>
+		<input type="hidden" id="exSearchWord" name="exSearchWord" value="${exSearchWord}"/>
+		<input type="hidden" id="exSearchOption" name="exSearchOption" value="${exSearchOption}"/> 
 		<input type="button" id="searchBtn" value="검색" />
 	</div>
 	<table id="contentBoxTab">
@@ -50,6 +52,3 @@
 		</tr>
 	</table>
 </div>
- <script>
-  admin.main('${context}');
-</script>

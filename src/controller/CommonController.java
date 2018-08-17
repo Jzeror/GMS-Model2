@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import enums.Term;
+import enums.Path;
 
 @WebServlet("/common.do")       // /가 들어가네. 배열인 경우 ({"","",""})
 public class CommonController extends HttpServlet {
@@ -28,11 +28,11 @@ public class CommonController extends HttpServlet {
 			i++;
 		}
 		request.getRequestDispatcher(
-				Term.WEBPATH.toString()
+				Path.WEBPATH.toString()
 				+"/"+request.getServletPath()
 					.split("/")[1]
 					.split("\\.")[0]
-				+Term.MAIN.toString())
+				+Path.MAIN.toString())
 			.forward(request, response);
 	}
 }

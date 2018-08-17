@@ -29,6 +29,9 @@ public class Commander {
 		case MOVE:
 			cmd = new MoveCommand(request);
 			break;
+		case FILEUPLOAD:
+			cmd = new FileCommand(request);
+			break;
 		}
 		return cmd;
 	}

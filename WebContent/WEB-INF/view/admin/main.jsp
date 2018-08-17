@@ -10,11 +10,9 @@
 			<jsp:include page="../common/title_box.jsp" />
 			<jsp:include page="../common/menu_box.jsp" />
 		</div>
-		<!-- header end -->
 		<div id="content">
 			<jsp:include page="../member/search.jsp" />
 		</div>
-		<!-- content end -->
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
 <script >

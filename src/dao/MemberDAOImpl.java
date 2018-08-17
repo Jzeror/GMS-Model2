@@ -12,11 +12,11 @@ import enums.DBConstant2;
 import enums.Domain;
 import factory.DatabaseFactory;
 import pool.DBConstant;
+import service.ImageServiceImpl;
 import template.*;
 
 public class MemberDAOImpl implements MemberDAO {
 	private static MemberDAO instance = new MemberDAOImpl();
-
 	public static MemberDAO getInstance() {
 		return instance;
 	}
@@ -29,6 +29,7 @@ public class MemberDAOImpl implements MemberDAO {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("member", mm);
 		map.put("table", Domain.MEMBER);
+		map.put("domain", "member");
 		q.play(map);
 	}
 	@Override
@@ -37,31 +38,42 @@ public class MemberDAOImpl implements MemberDAO {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("table", Domain.MEMBER);
 		map.put("searchWord", searchWord);
+		map.put("domain", "member");
 		q.play(map);
 		return (MemberBean)q.getO();
 	}
 	@Override
-	public int count() {
+	public int count(Map<?,?> map) {
 		q= new CountQuery();
-		q.play();
+		q.play(map);
 		return (int)q.getNumber();
 	}
 	@Override
 	public void update(Map<?,?> param) {
 		q= new ModifyQuery();
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("table", Domain.MEMBER);			//얘네는 나중에 
-		map.put("searchTable", Domain.MEMBER);		//동적으로 만들자.
-		map.put("column", "MEM_ID");		
-		map.put("updateWord", param.get("updateWord"));
+		map.put("columnMemId", "MEM_ID");		
+		map.put("memId", param.get("memId"));
+		String[] arr1 = {"PASSWORD","ROLL","TEAM_ID"};
+		String[] arr2 = {
+				param.get("pass").toString(),
+				param.get("roll").toString(),
+				param.get("teamId").toString()
+			};
+		for(int i=0 ; i<arr1.length ; i++) {
+		map.put("column",arr1[i]);
+		map.put("modi",arr2[i]);
 		q.play(map);
+		}
 	}
 	@Override
 	public void delete(MemberBean member) {
 		q =new RemoveQuery();
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("member", member);
-		map.put("table", Domain.MEMBER);
+		map.put("memId", member.getMemId());
+		map.put("pass", member.getPassword());
+		map.put("domain", "member");
+		ImageServiceImpl.getInstance().remove(member.getMemId());
 		q.play(map);
 	}
 	@Override

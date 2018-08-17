@@ -68,6 +68,21 @@ div#login_box a:active{
 	color: #ff0000;
 	text-decoration: none;	
 }
+div#logout_box{
+	float: right;
+	margin: 10px;
+	font-size: 1.1em;
+	display: block;
+	color: #000000;
+}
+div#logout_box a:hover{
+	color: #000000;
+	text-decoration: none;
+}
+div#logout_box a:active{
+	color: #ff0000;
+	text-decoration: none;	
+}
 div#header h1{
 	color: #000000;
 	padding: 5px 0;

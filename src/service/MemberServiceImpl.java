@@ -1,10 +1,5 @@
 package service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -24,8 +19,8 @@ public class MemberServiceImpl implements MemberService{
 		MemberDAOImpl.getInstance().insert(mm);
 	}
 	@Override
-	public int count() {
-		return MemberDAOImpl.getInstance().count();
+	public int count(Map<?,?> map) {
+		return MemberDAOImpl.getInstance().count(map);
 	}
 	@Override
 	public void modify(Map<?,?> param) {

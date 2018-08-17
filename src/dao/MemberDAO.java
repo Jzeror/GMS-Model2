@@ -9,7 +9,7 @@ public interface MemberDAO {
 	public void insert(MemberBean mm);
 	public List<MemberBean> selectSome(Map<?,?> param);
 	public MemberBean selectOne(String searchWord);
-	public int count();
+	public int count(Map<?,?> map);
 	public void update(Map<?,?> param);
 	public void delete(MemberBean member);
 	

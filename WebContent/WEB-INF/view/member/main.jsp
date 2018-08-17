@@ -8,7 +8,14 @@
 	<div id="wrapper">
 		<div id="header">
 			<jsp:include page="../common/title_box.jsp" />
-			<jsp:include page="../common/login_box.jsp" />
+			<c:choose>
+				<c:when test="${log eq 'login'}">
+					<jsp:include page="../common/logout_box.jsp" />
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="../common/login_box.jsp" />
+				</c:otherwise>
+			</c:choose>
 			<jsp:include page="../common/menu_box.jsp" />
 		</div>	
 		<div id="content">
@@ -41,7 +48,7 @@
 			</c:choose>
 		</div>	
 		<div id="footer">
-		<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../common/footer.jsp" />
 		</div>
 	</div>
 <script>

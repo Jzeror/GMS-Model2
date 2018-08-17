@@ -8,13 +8,12 @@ import enums.MemberQuery;
 import factory.DatabaseFactory;
 
 public class SearchQuery extends QueryTemplate {
-
 	@Override
 	void initialize() {
-		map.put("sql", (!map.containsKey("searchOption"))? MemberQuery.LIST.toString()
+		map.put("sql", (map.get("searchOption").toString().equals("none"))?
+				MemberQuery.LIST.toString()
 				: String.format(MemberQuery.SEARCH.toString(),map.get("searchOption"),map.get("searchWord")));
 	}
-
 	@Override
 	void startPlay() {
 		try {
@@ -25,7 +24,6 @@ public class SearchQuery extends QueryTemplate {
 			e.printStackTrace();
 		}
 	}
-
 	@Override
 	void endPlay() {
 		try {
@@ -46,7 +44,5 @@ public class SearchQuery extends QueryTemplate {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-
 }

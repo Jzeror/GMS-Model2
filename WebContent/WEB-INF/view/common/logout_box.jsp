@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div id="login_box">
-	<a id="goUserLoginForm" >로그인</a>
+<div id="logout_box">
+	<a id="goUserLogOutForm" >로그아웃</a>
 	&nbsp;&nbsp;
 	<a id="goJoinForm">JOIN</a>
 </div>

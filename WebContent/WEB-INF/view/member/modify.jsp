@@ -1,17 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-		<div id="header">
-			<jsp:include page="../common/title_box.jsp" />
-			<jsp:include page="../common/login_box.jsp" />
-			<jsp:include page="../common/menu_box.jsp" />
-		</div>		
-		<div id="content">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div id="content_box">
 <form id="update_id" name="update_name">
 			<table>
 				<tr>
-					<td colspan="3" rowspan="3"><img
-						src="${img}/mypage/${user.memId}.jpg" width="130" height="200"
-						alt="" /></td>
+					<td colspan="3" rowspan="3">
+					<img
+						src="${img}/upload/${imgp}" width="130" height="200"
+						alt="" />
+					</td>
 					<td>ID</td>
 					<td colspan="2">${user.memId}</td>
 				</tr>
@@ -32,13 +29,13 @@
 				<tr>
 					<td>현재팀: ${user.teamId}</td>
 					<td colspan="2"> 		
-						<input type = "radio" id="teamid_1" name="teamid"
+						<input type = "radio" id="teamid_1" name="teamId"
 							value="A" /> 걍놀자
-						<input type = "radio" id="teamid_2" name="teamid"
+						<input type = "radio" id="teamid_2" name="teamId"
 							value="B"  /> 지은이네
-						<input type = "radio" id="teamid_3" name="teamid"
+						<input type = "radio" id="teamid_3" name="teamId"
 							value="D" /> 왕거북이
-						<input type = "radio" id="teamid_4" name="teamid"
+						<input type = "radio" id="teamid_4" name="teamId"
 							value="C" /> 코딩짱</td>
 					<td>성별</td>
 					<td colspan="2">${user.gender}</td>
@@ -58,63 +55,17 @@
 					<td colspan="2">${user.ssn}</td>
 				</tr>
 			</table>
+			<input type="hidden" name="exTeamid" value='${user.teamId}'/>
+			<input type="hidden" name="exRoll" value='${user.roll}'/>
+			<input type="hidden" name="exPass" value='${user.password}'/>
 			<input type="hidden" name="memId" value=${user.memId } /> 
-			<input type="hidden" name="action" value="update" /> 
-			<input type="hidden" name="page" value="mypage" /> 
+			<input type="hidden" name="action" value="modify" /> 
+			<input type="hidden" name="page" value="modify" /> 
 			<input type="button" id="updateConfirmBtn" value="수정확인" />
 		</form>
-	<form id="moveMain">
-
-	<input type="button" id="mainMoveBtn" value="메인으로가기"/>
-	</form>
-		</div>		
-		<div id="footer">
-		<jsp:include page="../common/footer.jsp" />
-		</div>
-	<script>
-document.getElementById("mainMoveBtn").addEventListener('click', function(){
-	router.move({
-		context : "${context}" ,
-		domain : "member" , 
-		action : "move" ,
-		page : "index"
-	});
-});
-	document.getElementById('mypageMoveBtn').addEventListener('click', function() {
-		router.move({
-			context : '${context}',
-			domain : 'member',
-			action : 'move',
-			page : 'mypage'
-		});
-	});
-	var roll = document.getElementById('roll');
-	for(var i=0 ; i< roll.options.length;i++){
-		if(roll.options[i].value==='${user.roll}'){
-			roll.options[i].setAttribute("selected","selected");
-		}
-	}
-	for(var i=1 ; i<=4 ; i++){
-		if(document.getElementById('teamid_'+i).value==='${user.teamId}'){
-			document.getElementById('teamid_'+i).checked =true;
-		}
-	}
-	document.getElementById("updateConfirmBtn").addEventListener(
-			'click',
-			function() {				
-				var form = document.getElementById('update_id');
-				form.action = "${context}/member.do";
-				form.method = "post";
-				if (form.pass.value === "") {
-					mem.setPassword(${user.password});
-				} else{
-					mem.setPassword(form.pass.value)
-				}
-				form.pass.value = mem.getPassword();
-				form.submit();
-			});
-</script>
-</body>
-</html>
-
-
+		
+<form method="post" enctype="multipart/form-data" action="${context}/member.do?action=fileupload&page=retrieve">
+  파일업로드: <input type="file" name="upfile"><br/>
+   		  <input type="submit" value="파일업로드">
+</form>
+</div>		

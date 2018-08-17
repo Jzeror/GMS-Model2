@@ -11,31 +11,11 @@
 		<form id="delete_form">
 			아이디:<input type="text" name="id" /><br> 
 			비밀번호:<input type="password" name="pass" /><br />
+			<input type="hidden" name='confirmId' value="${user.memId}" />
+			<input type="hidden" name='confirmPass' value="${user.password}" />
 			<input type="button" id='delete_form_btn' value="조오오온송" />
 		</form>
 	</div>
 	<div id="footer">
 		<jsp:include page="../common/footer.jsp" />
 	</div>
-	<script>
-		document.getElementById('delete_form_btn').addEventListener('click',function() {
-			var form = document.getElementById('delete_form');
-			var node = document.createElement('input');
-			node.innerHTML = '<input type="hidden" name="action" value="remove" />';
-			form.appendChild(node);
-			var node2 = document.createElement('input');
-			node2.innerHTML = '<input type="hidden" name="page" value="main" />';
-			form.appendChild(node2);
-			if (form.pass.value === '${user.password}'
-					&& form.id.value === '${user.memId}') {
-				form.action = "${context}/member.do";
-				form.method = "post";
-				form.submit();
-			} else {
-				alert("입력이 잘못되었습니다.");
-			}
-
-						});
-	</script>
-</html>
-

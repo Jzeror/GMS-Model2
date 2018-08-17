@@ -1,4 +1,4 @@
-
+"use strict";
 var router = (()=> {
 	return {move : x=> {
 		location.href = x.context + "/" + x.domain + ".do?action=" + x.action + "&page=" + x.page;
@@ -28,13 +28,6 @@ var service = (()=>{
 		}
 	}
 })();
-
-
-/*
- * joinValidation : x=>{ if (x.getMemId() === "") { alert("Please provide your
- * id!"); return false; } else if (x.getPassword() === "") { alert("Please
- * provide your pass!"); return false; } else { return true; } }
- */
 
 var mem=(()=> {
 	var _memId, _ssn, _password, _name, _age, _gender, _roll, _teamId; 
@@ -85,12 +78,13 @@ var mem=(()=> {
 var member= (()=>{
 	return{
 		main : x=>{
-			document.getElementById('loginFormBtn').addEventListener(
-					'click',function() {
-						var form = document.getElementById("user-login-form-id");
-						var e = service.nullChecker([
-							form.name.value,
-							form.pass.value ]);
+			if(document.getElementById('loginFormBtn')!=null){
+				document.getElementById('loginFormBtn')
+				.addEventListener('click',()=> {
+					var form = document.getElementById("user-login-form-id");
+					var e = service.nullChecker([
+						form.name.value,
+						form.pass.value ]);
 					if (e.checker) {
 						var node = document.createElement("input");
 						node.innerHTML= '<input type="hidden" name="action" value="login" />';
@@ -105,8 +99,9 @@ var member= (()=>{
 						alert(x.text);
 					}
 				});
-			document.getElementById('join_form_btn')
-				.addEventListener('click',()=> {
+			}
+			if(document.getElementById('join_form_btn')!=null){
+				document.getElementById('join_form_btn').addEventListener('click',()=> {
 					var form = document.getElementById("join_form");
 					var e = service.nullChecker([ form.memid.value,
 						form.password.value, form.name.value,
@@ -114,10 +109,10 @@ var member= (()=>{
 					if (e.checker) {
 						mem.join(form.ssn.value);
 						var j = [ 
-							{name : 'action',value : 'add'},
+							{name : 'action',value :'add'},
 							{name : 'gender',value : mem.getGender()}, 
 							{name : 'age',value : mem.getAge()},
-							{name : 'page', value : 'seac2h'}
+							{name : 'page', value : 'login'}
 						];
 						for ( var i in j) {
 						var node = document.createElement('input');
@@ -132,7 +127,119 @@ var member= (()=>{
 					} else {
 						alert(x.text);
 					}
+				});
+			}
+			if(document.getElementById('update_id')!=null){
+				var roll = document.getElementById('roll');
+				for(var i=1 ; i<=4 ; i++){
+					if(document.getElementById('teamid_'+i).value===document.getElementById('update_id').exTeamid.value){
+						document.getElementById('teamid_'+i).checked =true;
+					}
+				}
+				alert(document.getElementById('update_id').exTeamid.value);
+				for(var i=0 ; i< roll.options.length;i++){
+					if(roll.options[i].value===document.getElementById('update_id').exRoll.value){
+						roll.options[i].setAttribute("selected","selected");
+					}
+				}
+			}
+			if(document.getElementById("updateConfirmBtn")!=null){
+				document.getElementById("updateConfirmBtn").addEventListener(
+						'click',
+						function() {				
+							var form = document.getElementById('update_id');
+							if (form.pass.value === "") {
+								mem.setPassword(document.getElementById('update_id').exPass.value);
+							} else{
+								mem.setPassword(form.pass.value)
+							}
+							form.pass.value = mem.getPassword();
+							form.action = x+"/member.do";
+							form.method = "post";
+							form.submit();
+						});
+			}
+			if(document.getElementById('delete_form_btn')!=null){
+				document.getElementById('delete_form_btn').addEventListener('click',function() {
+					var form = document.getElementById('delete_form');
+					var node = document.createElement('input');
+					node.innerHTML = '<input type="hidden" name="action" value="remove" />';
+					form.appendChild(node);
+					var node2 = document.createElement('input');
+					node2.innerHTML = '<input type="hidden" name="page" value="main" />';
+					form.appendChild(node2);
+					if (form.pass.value === form.confirmPass.value
+							&& form.id.value === form.confirmId.value) {
+						form.action = x+"/member.do";
+						form.method = "post";
+						form.submit();
+					} else {
+						alert("입력이 잘못되었습니다.");
+					}
+				});
+			}
+			if(document.getElementById("mypageMoveToDelete")!=null){
+				document.getElementById("mypageMoveToDelete")
+				.addEventListener('click',function() {
+						router.move({
+							context : x,
+							domain : 'member',
+							action : 'move',
+							page : 'remove'
+						});
+				});
+			}
+			if(document.getElementById('moveToModify')!=null){
+				document.getElementById('moveToModify')
+				.addEventListener('click',function() {
+						location.href=x+"/member.do?action=retrieve&page=modify";
 			});
+			}
+			if(document.querySelector('.username')!=null){
+				document.querySelector('.username')
+				.addEventListener('click',function() {
+						location.href=x+"/member.do?action=retrieve&page=modify&searchWord="+document.querySelector('.username').getAttribute('id');
+			});
+			}
+			
+			if(document.getElementById('goUserLogOutForm')!=null){
+				document.getElementById('goUserLogOutForm').addEventListener('click', ()=>{
+					location.href = x+'/member.do?action=login&page=main&log=login';
+				});
+			
+			}
+			if(document.getElementById('goAdmin')!=null){
+				document.getElementById('goAdmin')
+				.addEventListener('click', ()=>{ 
+					var isAdmin = confirm('관리자니?');
+					if(isAdmin){ 
+						var password = prompt('관리자비번을 입력바랍니다');
+						if(password == 3){
+							router.move({ context : x, domain : 'admin', action : 'search', page : 'main'}); 
+						}else{alert('이상한짓 하지마렴 준아');} 
+					}else{
+						alert('솔직하구나'); 
+					}
+				});
+		} 
+		if(document.getElementById('goHome')!=null){
+			document.getElementById('goHome')
+			.addEventListener('click', function(){ // 콜백함수
+				router.move({ context : x,
+					domain : 'common',
+					action : 'move',
+					page : 'main'});
+			});
+		} 
+		if(document.getElementById('goRetrieve')!=null){
+			document.getElementById('goRetrieve')
+			.addEventListener('click', function(){ // 콜백함수
+				router.move({ context : x,
+					domain : 'member',
+					action : 'retrieve',
+					page : 'retrieve'});
+			});
+		} 
 		}
 	};
 })();
@@ -140,21 +247,64 @@ var member= (()=>{
 var common= (()=>{
 	return{
 		main : x=>{
-			document.getElementById('goAdmin')
-			.addEventListener('click', ()=>{ 
-				var isAdmin = confirm('관리자니?');
-				if(isAdmin){ 
-					var password = prompt('관리자비번을 입력바랍니다');
-					if(password == 3){
-						router.move({ context : x, domain : 'admin', action : 'search', page : 'main'}); 
-					}else{alert('이상한짓 하지마렴 준아');} 
-				}else{
-					alert('솔직하구나'); 
-				}
-			});
+			if(document.getElementById('goUserLoginForm')!=null){
+				document.getElementById('goUserLoginForm').addEventListener('click', ()=>{
+					 router.move({
+						 context : x,
+						 domain : 'member',
+						 action : 'move',
+						 page : 'login'
+					});
+				});
 			
+			}
+			if(document.getElementById('goUserLogOutForm')!=null){
+				document.getElementById('goUserLogOutForm').addEventListener('click', ()=>{
+					location.href = x+'/member.do?action=login&page=main&log=login';
+				});
 			
-
+			}  
+			if(document.getElementById('goAdmin')!=null){
+					document.getElementById('goAdmin')
+					.addEventListener('click', ()=>{ 
+						var isAdmin = confirm('관리자니?');
+						if(isAdmin){ 
+							var password = prompt('관리자비번을 입력바랍니다');
+							if(password == 3){
+								router.move({ context : x, domain : 'admin', action : 'search', page : 'main'}); 
+							}else{alert('이상한짓 하지마렴 준아');} 
+						}else{
+							alert('솔직하구나'); 
+						}
+					});
+			} 
+			if(document.getElementById('goHome')!=null){
+				document.getElementById('goHome')
+				.addEventListener('click', function(){ // 콜백함수
+					router.move({ context : x,
+						domain : 'common',
+						action : 'move',
+						page : 'main'});
+				});
+			} 
+			if(document.getElementById('goJoinForm')!=null){
+				document.getElementById('goJoinForm')
+				.addEventListener('click', function(){ 
+					router.move({context :x, 
+						domain: 'member',
+						action: 'move',
+						page: 'add'});
+				});
+			}
+			if(document.getElementById('goRetrieve')!=null){
+				document.getElementById('goRetrieve')
+				.addEventListener('click', function(){ // 콜백함수
+					router.move({ context : x,
+						domain : 'member',
+						action : 'retrieve',
+						page : 'retrieve'});
+				});
+			} 
 		}
 	};
 })();
@@ -165,10 +315,12 @@ var admin = (()=>{
 			 document.getElementById('searchBtn').addEventListener('click',()=>{
 				 var j = document.getElementById('searchOption');
 				 var k = document.getElementById('searchWord');
-				 location.href=(j.value==="userId")?x+'/member.do?action=retrieve&page=retrieve&searchWord='
-						 +k.value+'&searchOption='+j.value
-						 : x+'/member.do?action=search&page=search&searchOption='
-							 +j.value+'&searchWord='+k.value; 
+				 
+				 location.href=(j.value==="userId")?
+						 x+'/member.do?action=retrieve&page=retrieve&searchWord='
+						 	+k.value+'&searchOption='+j.value
+						 	: x+'/admin.do?action=search&page=search&searchOption='
+							 	+j.value+'&searchWord='+k.value; 
 			});
 			service.addClass(
 					document.getElementById('content_box'),
@@ -182,7 +334,7 @@ var admin = (()=>{
 					document.getElementById('contentBoxTab'),
 					'width1000px marginAtuo '
 					);
-			for(i of document.querySelectorAll('.username') ){
+			for(var i of document.querySelectorAll('.username') ){
 				service.addClass(
 						i,
 						'fontColorBlue cursor ');
@@ -190,15 +342,41 @@ var admin = (()=>{
 					location.href=x+'/member.do?searchOption=userId&action=retrieve&page=retrieve&searchWord='+this.getAttribute('id');
 				});
 			}
-			for(i of document.querySelectorAll(".pageNumber")){
+			for(var i of document.querySelectorAll(".pageNumber")){
 				service.addClass(
 						i,
 						'fontColorBlue cursor ');
 				 i.addEventListener('click',function(){
-					 	 location.href = x +'/admin.do?action=search&page=main&pageNum='+this.getAttribute('id');
+						 var k= document.getElementById('exSearchWord');
+						 var j= document.getElementById('exSearchOption');
+					 	 location.href = x +'/admin.do?action=search&page=search&pageNum='+this.getAttribute('id')+'&searchOption='
+						 	+j.value+'&searchWord='+k.value;
 					 }		 
 				 );
 			 } 
+			if(document.getElementById('goAdmin')!=null){
+				document.getElementById('goAdmin')
+				.addEventListener('click', ()=>{ 
+					var isAdmin = confirm('관리자니?');
+					if(isAdmin){ 
+						var password = prompt('관리자비번을 입력바랍니다');
+						if(password == 3){
+							router.move({ context : x, domain : 'admin', action : 'search', page : 'main'}); 
+						}else{alert('이상한짓 하지마렴 준아');} 
+					}else{
+						alert('솔직하구나'); 
+					}
+				});
+		} 
+		if(document.getElementById('goHome')!=null){
+			document.getElementById('goHome')
+			.addEventListener('click', function(){ // 콜백함수
+				router.move({ context : x,
+					domain : 'common',
+					action : 'move',
+					page : 'main'});
+			});
+		} 
 
 		}
 	};})();

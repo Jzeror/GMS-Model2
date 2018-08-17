@@ -1,7 +1,7 @@
 package enums;
 
-public enum Term {
- CONTEXT, WEBPATH, MAIN ;
+public enum Path {
+ CONTEXT, WEBPATH, MAIN, UPLOAD_PATH ;
 	
 	public String toString() {
 		String r= "";
@@ -12,6 +12,9 @@ public enum Term {
 			break;
 		case MAIN : 
 			r="/main.jsp";
+			break;
+		case UPLOAD_PATH : 
+			r="C:\\Users\\1027\\eclipse\\jee-oxygen\\JeeWorkspace\\GMS-Model2\\WebContent\\resources\\img\\upload\\";
 			break;
 		}
 		return r;
