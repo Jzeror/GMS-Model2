@@ -3,3 +3,4 @@
 location.href =
 	"<%=application.getContextPath() %>/common.do"
 </script>
+ 
